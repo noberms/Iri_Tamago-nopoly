@@ -1,6 +1,8 @@
-package model.tile;
+package model.tile.deck;
 
 import java.util.ArrayList;
+
+import model.tile.Tile;
 
 public abstract class Deck extends Tile {
 	
