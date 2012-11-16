@@ -1,4 +1,4 @@
-package log.buttons;
+package view.log.buttons;
 
 import javax.swing.JButton;
 

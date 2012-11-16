@@ -1,11 +1,12 @@
-package log;
+package view.log;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
-import log.buttons.NewGame;
-import log.buttons.Tutorial;
+import view.log.buttons.NewGame;
+import view.log.buttons.Tutorial;
+
 
 public class Log extends JFrame {
 	

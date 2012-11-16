@@ -1,7 +1,8 @@
 package test;
 
 import javax.swing.JFrame;
-import log.Log;
+
+import view.log.Log;
 
 public class Run {
 
