@@ -5,8 +5,8 @@ public class Card {
 	private String message;
 	private CardImpl ci;
 	
-	public void execute() {
-		this.ci.execute();
+	public void execute(DataBundle bundle) {
+		this.ci.execute(bundle);
 	}
 
 	public String getMessage() {

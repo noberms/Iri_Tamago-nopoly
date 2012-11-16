@@ -2,6 +2,6 @@ package model.tile.deck;
 
 public interface CardImpl {
 	
-	public abstract void execute();
+	public abstract void execute(DataBundle bundle);
 
 }
