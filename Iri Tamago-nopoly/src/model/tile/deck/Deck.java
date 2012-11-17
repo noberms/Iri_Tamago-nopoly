@@ -1,22 +1,22 @@
 package model.tile.deck;
 
-import java.util.ArrayList;
-
+import java.util.HashMap;
 import model.tile.Tile;
 
 public abstract class Deck extends Tile {
 	
-	private ArrayList<Card> cards;
+	protected HashMap<String, Card> cards;
 	
 	public Deck(String name) {
 		super(name);
+		this.cards = new HashMap<String, Card>();
 	}
 	
-	public ArrayList<Card> getCards() {
+	public HashMap<String, Card> getCards() {
 		return this.cards;
 	}
 	
-	public void setCards(ArrayList<Card> cards) {
+	public void setCards(HashMap<String, Card> cards) {
 		this.cards = cards;
 	}
 	
