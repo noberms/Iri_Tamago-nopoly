@@ -2,8 +2,13 @@ package model.tile.deck;
 
 public class Card {
 	
-	private String message;
-	private CardImpl ci;
+	private final String message;
+	private final CardImpl ci;
+	
+	public Card(String message, CardImpl ci) {
+		this.message = message;
+		this.ci = ci;
+	}
 	
 	public void execute(DataBundle bundle) {
 		this.ci.execute(bundle);
@@ -13,16 +18,8 @@ public class Card {
 		return this.message;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 	public CardImpl getCi() {
 		return this.ci;
-	}
-
-	public void setCi(CardImpl ci) {
-		this.ci = ci;
 	}
 	
 }

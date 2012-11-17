@@ -2,7 +2,7 @@ package model.tile.property;
 
 public class Station extends Property {
 	
-	private int[] rent;
+	private final int[] rent;
 	
 	public Station(String name, int propertyPrice, int mortgageValue, int[] rent) {
 		super(name, propertyPrice, mortgageValue);
@@ -11,10 +11,6 @@ public class Station extends Property {
 
 	public int[] getRent() {
 		return this.rent;
-	}
-
-	public void setRent(int[] rent) {
-		this.rent = rent;
 	}
 	
 }

@@ -5,10 +5,9 @@ import model.tile.Tile;
 
 public class Property extends Tile{
 	
-	private String name;
 	private Player owner;
-	private int propertyPrice;
-	private int mortgageValue;
+	private final int propertyPrice;
+	private final int mortgageValue;
 	private boolean monopoly;
 	private boolean mortgaged;
 	
@@ -19,14 +18,6 @@ public class Property extends Tile{
 		this.mortgageValue = mortgageValue;
 		this.monopoly = false;
 		this.mortgaged = false;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Player getOwner() {
@@ -41,16 +32,8 @@ public class Property extends Tile{
 		return this.propertyPrice;
 	}
 
-	public void setPrice(int propertyPrice) {
-		this.propertyPrice = propertyPrice;
-	}
-
 	public int getMortgageValue() {
 		return this.mortgageValue;
-	}
-
-	public void setMortgageValue(int mortgageValue) {
-		this.mortgageValue = mortgageValue;
 	}
 
 	public boolean isMonopoly() {

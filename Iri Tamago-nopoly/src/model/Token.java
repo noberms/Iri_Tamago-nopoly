@@ -2,8 +2,8 @@ package model;
 
 public class Token {
 	
-	private String image;
-	private String imageMoving;
+	private final String image;
+	private final String imageMoving;
 	private int position;
 	
 	public Token() {
@@ -28,16 +28,8 @@ public class Token {
 		return image;
 	}
 	
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
 	public String getImageMoving() {
 		return imageMoving;
-	}
-	
-	public void setImageMoving(String imageMoving) {
-		this.imageMoving = imageMoving;
 	}
 	
 	public int getPosition() {

@@ -2,13 +2,13 @@ package model.tile.property;
 
 public class Estate extends Property {
 	
-	private String color;
+	private final String color;
 	private boolean buildable;
 	private boolean sellable;
 	private int houses;
-	private int[] rent;
-	private int housePrice;
-	private int hotelPrice;
+	private final int[] rent;
+	private final int housePrice;
+	private final int hotelPrice;
 	
 	public Estate(String name, int propertyPrice, int mortgageValue,
 				  String color, int[] rent, int housePrice, int hotelPrice) {
@@ -21,10 +21,6 @@ public class Estate extends Property {
 
 	public String getColor() {
 		return this.color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
 	}
 
 	public boolean isBuildable() {
@@ -55,24 +51,12 @@ public class Estate extends Property {
 		return this.rent;
 	}
 
-	public void setRent(int[] rent) {
-		this.rent = rent;
-	}
-
 	public int getHousePrice() {
 		return this.housePrice;
 	}
 
-	public void setHousePrice(int housePrice) {
-		this.housePrice = housePrice;
-	}
-
 	public int getHotelPrice() {
 		return this.hotelPrice;
-	}
-
-	public void setHotelPrice(int hotelPrice) {
-		this.hotelPrice = hotelPrice;
 	}
 	
 }

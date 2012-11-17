@@ -6,8 +6,8 @@ import model.tile.property.Property;
 
 public class Player {
 	
-	private String name;
-	private Token token;
+	private final String name;
+	private final Token token;
 	private int cash;
 	private ArrayList<Property> deeds;
 	private boolean inJail;
@@ -24,16 +24,8 @@ public class Player {
 		return this.name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Token getToken() {
 		return this.token;
-	}
-
-	public void setToken(Token token) {
-		this.token = token;
 	}
 
 	public int getCash() {
@@ -59,6 +51,5 @@ public class Player {
 	public void setInJail(boolean inJail) {
 		this.inJail = inJail;
 	}
-	
 	
 }
