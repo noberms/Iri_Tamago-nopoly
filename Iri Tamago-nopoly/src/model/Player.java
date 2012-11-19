@@ -11,6 +11,8 @@ public class Player {
 	private int cash;
 	private ArrayList<Property> deeds;
 	private boolean inJail;
+	private int ownedStations;
+	private int ownedUtilities;
 	
 	public Player(String name, Token token) {
 		this.name = name;
@@ -50,6 +52,22 @@ public class Player {
 
 	public void setInJail(boolean inJail) {
 		this.inJail = inJail;
+	}
+	
+	public int getOwnedStations() {
+		return this.ownedStations;
+	}
+	
+	public void setOwnedStations(int ownedStations) {
+		this.ownedStations = ownedStations;
+	}
+	
+	public int getOwnedUtilities() {
+		return this.ownedUtilities;
+	}
+	
+	public void setOwnedUtilities(int ownedUtilities) {
+		this.ownedUtilities = ownedUtilities;
 	}
 	
 }
