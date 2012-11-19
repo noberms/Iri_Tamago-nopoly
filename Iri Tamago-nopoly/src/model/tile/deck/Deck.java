@@ -7,7 +7,7 @@ public abstract class Deck extends Tile {
 	
 	protected HashMap<String, Card> cards;
 	
-	public Deck(String name) {
+	protected Deck(String name) {
 		super(name);
 		this.cards = new HashMap<String, Card>();
 	}
