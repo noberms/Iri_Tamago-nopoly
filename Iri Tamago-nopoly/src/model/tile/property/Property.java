@@ -11,8 +11,8 @@ public class Property extends Tile{
 	private boolean monopoly;
 	private boolean mortgaged;
 	
-	public Property(String name, int propertyPrice, int mortgageValue) {
-		super(name);
+	public Property(String name, String image, int propertyPrice, int mortgageValue) {
+		super(name, image);
 		this.owner = null;
 		this.propertyPrice = propertyPrice;
 		this.mortgageValue = mortgageValue;

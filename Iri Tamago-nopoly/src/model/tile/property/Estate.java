@@ -10,13 +10,13 @@ public class Estate extends Property {
 	private final int housePrice;
 	private final int hotelPrice;
 	
-	public Estate(String name, int propertyPrice, int mortgageValue,
-				  String color, int[] rent, int housePrice, int hotelPrice) {
-		super(name, propertyPrice, mortgageValue);
+	public Estate(String name, String image, int propertyPrice, int mortgageValue,
+				  String color, int housePrice, int hotelPrice, int[] rent) {
+		super(name, image, propertyPrice, mortgageValue);
 		this.color = color;
-		this.rent = rent;
 		this.housePrice = housePrice;
 		this.hotelPrice = hotelPrice;
+		this.rent = rent;
 	}
 
 	public String getColor() {

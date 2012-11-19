@@ -1,22 +1,20 @@
-package model.tile.property;
-
-import model.tile.Tile;
+package model.tile;
 
 public class Tax extends Tile {
 	
-	private int amount;
+	private final int amount;
 	
 	public Tax(String name, String image, int amount) {
 		super(name, image);
 		this.amount = amount;
 	}
-
+	
 	public int getAmount() {
-		return amount;
+		return this.amount;
 	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
+	
+	public int payTax(int cash) {
+		return cash - this.amount;
 	}
 	
 }

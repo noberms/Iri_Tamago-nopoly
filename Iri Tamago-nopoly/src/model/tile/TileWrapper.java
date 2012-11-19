@@ -6,10 +6,10 @@ public class TileWrapper {
 	private int coordX;
 	private int coordY;
 	
-	public TileWrapper(Tile tile, int coordX, int coordY) {
-		this.tile = tile;
+	public TileWrapper(int coordX, int coordY, Tile tile) {
 		this.coordX = coordX;
 		this.coordY = coordY;
+		this.tile = tile;
 	}
 
 	public Tile getTile() {
