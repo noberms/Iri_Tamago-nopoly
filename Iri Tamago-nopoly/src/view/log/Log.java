@@ -1,12 +1,6 @@
 package view.log;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
-
-import view.log.buttons.NewGame;
-import view.log.buttons.Tutorial;
-
 
 public class Log extends JFrame {
 	
@@ -17,14 +11,10 @@ public class Log extends JFrame {
 		this.setSize(300, 200);
 		this.setLocation(10, 200);
 		this.setResizable(false);
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.getContentPane().add(BorderLayout.NORTH, new NewGame());
-		this.getContentPane().add(BorderLayout.SOUTH, new Tutorial());
-		/*
-		this.getContentPane().add(BorderLayout.AFTER_LAST_LINE, new About());
-		*/		
+		
+		
 		this.setVisible(true);
 	}
 	
