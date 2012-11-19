@@ -10,7 +10,7 @@ import model.tile.deck.community.CommunityChest;
 public class CommunityChestTest {
 	
 	public static void main(String[] args) {
-		CommunityChest cc = new CommunityChest();
+		CommunityChest cc = new CommunityChest("Community Chest Image");
 		System.out.println(cc.getName() + ":");
 		Iterator<Entry<String, Card>> it = cc.getCards().entrySet().iterator();
 		while(it.hasNext()) {

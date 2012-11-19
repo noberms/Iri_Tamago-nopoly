@@ -10,7 +10,7 @@ import model.tile.deck.chance.ChanceCards;
 public class ChanceCardTest {
 	
 	public static void main(String[] args) {
-		ChanceCards cc = new ChanceCards();
+		ChanceCards cc = new ChanceCards("Chance Card Image");
 		System.out.println(cc.getName() + ":");
 		Iterator<Entry<String, Card>> it = cc.getCards().entrySet().iterator();
 		while(it.hasNext()) {
