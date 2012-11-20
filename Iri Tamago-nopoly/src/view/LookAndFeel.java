@@ -12,5 +12,4 @@ public enum LookAndFeel {
 	}
 	
 	public String path(){return this.path;}
-	
 }

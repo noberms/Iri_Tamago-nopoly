@@ -1,6 +1,7 @@
-package view.log.buttons;
+package view.index.buttons;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 //import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ public class NewGame extends JButton {
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				System.out.println(this.getClass());
+				JOptionPane.showMessageDialog(null, "This feature is still under construction", "Under Construction", JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 	}	
