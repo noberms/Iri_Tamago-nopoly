@@ -15,7 +15,7 @@ public class NewGame extends JButton {
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				
+				System.out.println(this.getClass());
 			}
 		});
 	}	

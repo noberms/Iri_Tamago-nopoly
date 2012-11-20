@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class About extends JButton {
-	
+	//Test
 	private static final long serialVersionUID = -3451147928579128619L;
 	
 	public About() {
@@ -14,7 +14,7 @@ public class About extends JButton {
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				
+				System.out.println(this.getClass());
 			}
 		});
 	}
