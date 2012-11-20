@@ -18,18 +18,18 @@ public class Index extends JFrame {
 	private static final long serialVersionUID = -7576523088264784541L;
 	
 	public Index() {
-		this.initGUI();
-		this.setVisible(true);
-	}
-	
-	private void initGUI() {
 		ViewHelper.getInstance().setupLookAndFeel();
-		
 		this.setTitle("Iri Tamagonopoly - Index");
 		this.setSize(500, 390);
 		this.setLocation(200, 200);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		this.initComponents();
+		this.setVisible(true);
+	}
+	
+	private void initComponents() {
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		JPanel main = new JPanel(new GridBagLayout());
