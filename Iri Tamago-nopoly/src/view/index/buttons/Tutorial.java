@@ -12,7 +12,6 @@ public class Tutorial extends JButton {
 
 	public Tutorial() {
 		this.setText("Tutorial");
-		this.setSize(100, 50);
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

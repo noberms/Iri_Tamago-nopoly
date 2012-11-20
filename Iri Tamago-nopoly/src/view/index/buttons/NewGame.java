@@ -13,7 +13,6 @@ public class NewGame extends JButton {
 
 	public NewGame() {
 		this.setText("New Game");
-		this.setSize(50, 50);
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

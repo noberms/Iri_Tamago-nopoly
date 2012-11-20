@@ -12,7 +12,6 @@ public class About extends JButton {
 	
 	public About() {
 		this.setText("About Iri Tamago");
-		this.setSize(100, 50);
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
