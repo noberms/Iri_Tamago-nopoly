@@ -2,12 +2,16 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.helper.ViewHelper;
-import view.index.IndexMenuPanel;
 
 public class Index extends JFrame {
 	
@@ -21,30 +25,120 @@ public class Index extends JFrame {
 	private void initGUI() {
 		ViewHelper.getInstance().setupLookAndFeel();
 		
-		this.setTitle("Iri Tamagonopoly");
+		this.setTitle("Iri Tamagonopoly - Index");
 		this.setSize(500, 390);
-		this.setLocation(10, 200);
+		this.setLocation(200, 200);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		GridBagLayout layout = new GridBagLayout();
-		JPanel main = new JPanel(layout);
+		JPanel main = new JPanel(new GridBagLayout());
 		
-		JPanel red = ViewHelper.getInstance().createSquareJPanel(null, 300);
+		JPanel blank1 = ViewHelper.getInstance().createSquareJPanel(null, 300, 150);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.fill = GridBagConstraints.VERTICAL;
-		main.add(red, gbc);
+		main.add(blank1, gbc);
 		
-		JPanel menu = new IndexMenuPanel();
+		JPanel blank2 = ViewHelper.getInstance().createSquareJPanel(null, 300, 190);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		main.add(blank2, gbc);
+		
+		JPanel blank3 = ViewHelper.getInstance().createSquareJPanel(null, 140, 150);
 		gbc.gridx = 1;
+		gbc.gridy = 0;
+		main.add(blank3, gbc);
+
+		JPanel menu = new JPanel(new GridBagLayout());
+		GridBagConstraints gbc2 = new GridBagConstraints();		
+		gbc2.fill = GridBagConstraints.HORIZONTAL;
+		gbc2.insets = new Insets(5, 5, 5, 5);
+		
+		JButton newGame = this.createNewGameButton();
+		gbc2.gridx = 0;
+		gbc2.gridy = 0;
+		menu.add(newGame, gbc2);
+		
+		JButton tutorial = this.createTutorialButton();
+		gbc2.gridy = 1;
+		menu.add(tutorial, gbc2);
+		
+		JButton about = this.createAboutButton();
+		gbc2.gridy = 2;
+		menu.add(about, gbc2);
+		
+		JButton exit = this.createExitButton();
+		gbc2.gridy = 3;
+		menu.add(exit, gbc2);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 1;
 		main.add(menu, gbc);
 		
 		this.add(main);
 		
 	}
-		
 	
+	private JButton createNewGameButton() {
+		JButton newGame = new JButton("New Game");
+		newGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				executeNewGame();
+			}
+		});
+		return newGame;
+	}
+	
+	private JButton createTutorialButton() {
+		JButton tutorial = new JButton("Tutorial");
+		tutorial.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				executeTutorial();
+			}
+		});
+		return tutorial;
+	}
+		
+	private JButton createAboutButton() {
+		JButton about = new JButton("About Iri Tamago");
+		about.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				executeAbout();
+			}
+		});
+		return about;
+	}
+	
+	private JButton createExitButton() {
+		JButton exit = new JButton("Exit");
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				executeExit();
+			}
+		});
+		return exit;
+	}
+	
+	private void executeNewGame() {
+		ChooseToken chooseToken = new ChooseToken();
+		chooseToken.setVisible(true);
+		this.dispose();
+	}
+	
+	private void executeTutorial() {
+		JOptionPane.showMessageDialog(null, "This feature is still under construction", "Under Construction", JOptionPane.PLAIN_MESSAGE);
+	}
+	
+	private void executeAbout() {
+		JOptionPane.showMessageDialog(null, "This feature is still under construction", "Under Construction", JOptionPane.PLAIN_MESSAGE);
+	}
+	
+	private void executeExit() {
+		this.dispose();
+	}
 	
 }
