@@ -30,27 +30,9 @@ public class Index extends JFrame {
 	}
 	
 	private void initComponents() {
-		
-		GridBagConstraints gbc = new GridBagConstraints();
-		JPanel main = new JPanel(new GridBagLayout());
-		
-		JPanel blank1 = ViewHelper.getInstance().createSquareJPanel(null, 300, 150);
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		main.add(blank1, gbc);
-		
-		JPanel blank2 = ViewHelper.getInstance().createSquareJPanel(null, 300, 190);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		main.add(blank2, gbc);
-		
-		JPanel blank3 = ViewHelper.getInstance().createSquareJPanel(null, 140, 150);
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		main.add(blank3, gbc);
-
-		JPanel menu = new JPanel(new GridBagLayout());
-		GridBagConstraints gbc2 = new GridBagConstraints();		
+				
+		JPanel menu = ViewHelper.getInstance().createPanel(new GridBagLayout());
+		GridBagConstraints gbc2 = new GridBagConstraints();
 		gbc2.fill = GridBagConstraints.HORIZONTAL;
 		gbc2.insets = new Insets(5, 5, 5, 5);
 		
@@ -70,10 +52,13 @@ public class Index extends JFrame {
 		JButton exit = this.createExitButton();
 		gbc2.gridy = 3;
 		menu.add(exit, gbc2);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		main.add(menu, gbc);
+
+		GridBagConstraints gbc1 = new GridBagConstraints();
+		JPanel main = new JPanel(new GridBagLayout());
+		gbc1.gridx = 1;
+		gbc1.gridy = 1;
+		gbc1.insets = new Insets(150, 300, 10, 10);
+		main.add(menu, gbc1);
 		
 		this.add(main);
 		
