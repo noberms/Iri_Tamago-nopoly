@@ -2,6 +2,7 @@ package view.helper;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -27,7 +28,23 @@ public class ViewHelper {
 		} catch(Exception e) {}
 	}
 	
-	public JPanel createSquareJPanel(Color color) {
+	public JPanel createPanel() {
+		return new JPanel();
+	}
+	
+	public JPanel createPanel(GridBagLayout gbl) {
+		return new JPanel(gbl);
+	}
+	
+	public JPanel createPanel(GridBagLayout gbl, Color color) {
+		JPanel tempPanel = new JPanel(gbl);
+		if(color != null) {
+			tempPanel.setBackground(color);
+		}
+		return tempPanel;
+	}
+	
+	public JPanel createPanel(Color color) {
         JPanel tempPanel = new JPanel();
         if(color != null) {
         	tempPanel.setBackground(color);
@@ -35,7 +52,7 @@ public class ViewHelper {
         return tempPanel;
     }
 	
-	public JPanel createSquareJPanel(Color color, int size) {
+	public JPanel createPanel(Color color, int size) {
         JPanel tempPanel = new JPanel();
         if(color != null) {
         	tempPanel.setBackground(color);
@@ -46,7 +63,7 @@ public class ViewHelper {
         return tempPanel;
     }
 	
-	public JPanel createSquareJPanel(Color color, int width, int height) {
+	public JPanel createPanel(Color color, int width, int height) {
         JPanel tempPanel = new JPanel();
         if(color != null) {
         	tempPanel.setBackground(color);
