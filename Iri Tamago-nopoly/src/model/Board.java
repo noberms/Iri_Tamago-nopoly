@@ -17,21 +17,19 @@ public class Board {
 	private final TileWrapper[] board;
 	
 	public Board() {
-
-		ChanceCards cc = new ChanceCards("Chance Cards Image 1");
-		HashMap<String, Card> ccCards = cc.getCards();
-		CommunityChest cch = new CommunityChest("Community Chest Image 1");
-		HashMap<String, Card> cchCards = cch.getCards();
+		
+		HashMap<String, Card> communityChest = new CommunityChest(null).getCards();
+		HashMap<String, Card> chanceCards = new ChanceCards(null).getCards();
 		
 		this.board = new TileWrapper[] {
 						new TileWrapper(653, 653, new Tile("Go", "Tile Image")),
 						new TileWrapper(591, 653, new Estate("Old Kent Road", "Estate Image", 60, 30, "brown", 50, 50, new int[]{2, 10, 30, 90,160,250})),
-						new TileWrapper(529, 653, cch),
+						new TileWrapper(529, 653, new CommunityChest("Community Chest Image 1", communityChest)),
 						new TileWrapper(467, 653, new Estate("WhiteChapel Road", "Estate Image", 60, 30, "brown", 50, 50, new int[]{4, 20, 60, 180, 320, 450})),
 						new TileWrapper(405, 653, new Tax("Income Tax", "Tax Image", 200)),
 						new TileWrapper(343, 653, new Station("Kings Cross Station", "Estate Image", 200, 100, new int[]{25, 50, 100, 200})),
 						new TileWrapper(281, 653, new Estate("The Angel Islington", "Estate Image", 100, 50, "cyan", 50, 50, new int[] {6, 30, 90, 270, 400, 550})),
-						new TileWrapper(219, 653, cc),
+						new TileWrapper(219, 653, new ChanceCards("Chance Cards Image 1", chanceCards)),
 						new TileWrapper(157, 653, new Estate("Euston Road", "Estate Image", 100, 50, "cyan", 50, 50, new int[]{6, 30, 90, 270, 400, 550})),
 						new TileWrapper(95, 653, new Estate("Pentonville Road", "Estate Image", 120, 60, "cyan", 50, 50, new int[]{8, 40, 100, 300, 450, 600})),
 						new TileWrapper(0, 653, new Tile("In Jail", "Tile Image")),
@@ -42,13 +40,13 @@ public class Board {
 						new TileWrapper(0, 381, new Estate("Northumberland Avenue", "Estate Image", 160, 80, "magenta", 100, 100, new int[]{12, 60, 180, 500, 700, 900})),
 						new TileWrapper(0, 320, new Station("Marlyebone Station", "Station Image", 200, 100, new int[]{25, 50, 100, 200})),
 						new TileWrapper(0, 259, new Estate("Bow Street", "Estate Image", 180, 90, "orange", 100, 100, new int[]{14, 70, 200, 550, 750, 950})),
-						new TileWrapper(0, 198, new CommunityChest("Community Chest Image 2", ccCards)),
+						new TileWrapper(0, 198, new CommunityChest("Community Chest Image 2", communityChest)),
 						new TileWrapper(0, 137, new Estate("Marlborough Street", "Estate Image", 180, 90, "orange", 100, 100, new int[]{14, 70 , 200, 550, 750, 950})),
 						new TileWrapper(0, 76, new Estate("Vine Street", "Estate Image", 200, 100, "orange", 100, 100, new int[]{16, 80, 220, 600, 800, 1000})),
 						new TileWrapper(0, 0, new Tile("Free Parking", "Tile Image")),
 		
 						new TileWrapper(95, 0, new Estate("Strand", "Estate Image", 220, 110, "red", 150, 150, new int[]{18, 90, 250, 700, 875, 1050})),
-						new TileWrapper(157, 0, new CommunityChest("Community Chest Image 2", cchCards)),
+						new TileWrapper(157, 0, new ChanceCards("Chance Cards Image 2", chanceCards)),
 						new TileWrapper(219, 0, new Estate("Fleet Street", "Estate Image", 220, 110, "red", 150, 150, new int[]{18, 90, 250, 700, 875, 1050})),
 						new TileWrapper(281, 0, new Estate("Trafalgar Square", "Estate Image", 240, 120, "red", 150, 150, new int[]{20, 100, 300, 750, 925, 1100})),
 						new TileWrapper(343, 0, new Station("Fenchurch St. Station", "Station Image", 200, 100, new int[]{25, 50, 100, 200})),
@@ -60,10 +58,10 @@ public class Board {
 		
 						new TileWrapper(653, 76, new Estate("Regent Street", "Estate Image", 300, 150, "green", 200, 200, new int[]{26, 130, 390, 900, 1100, 1275})),
 						new TileWrapper(653, 137, new Estate("Oxford Street", "Estate Image", 300, 150, "green", 200, 200, new int[]{26, 130, 390, 900, 1100, 1275})),
-						new TileWrapper(653, 198, new CommunityChest("Community Image 3", cchCards)),
+						new TileWrapper(653, 198, new CommunityChest("Community Chest Image 3", communityChest)),
 						new TileWrapper(653, 259, new Estate("Bond Street", "Estate Image", 320, 160, "green", 200, 200, new int[]{28, 150, 450, 1000, 1200, 1400})),
 						new TileWrapper(653, 320, new Station("Liverpool Street Station", "Station Image", 200, 100, new int[]{25, 50, 100, 200})),
-						new TileWrapper(653, 381, new ChanceCards("Chance Cards Image 3", ccCards)),
+						new TileWrapper(653, 381, new ChanceCards("Chance Cards Image 3", chanceCards)),
 						new TileWrapper(653, 442, new Estate("Park Lane", "Estate Image", 350, 30, "blue", 200, 50, new int[]{35, 175, 500, 1100, 1300, 1500})),
 						new TileWrapper(653, 442, new Tax("Super Tax", "Tax Image", 100)),
 						new TileWrapper(653, 503, new Estate("Mayfair", "Estate Image", 400, 200, "blue", 200, 200, new int[]{50, 200, 600, 1400, 1700, 2000}))
