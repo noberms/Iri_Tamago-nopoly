@@ -13,9 +13,15 @@ import javax.swing.JPanel;
 
 import view.helper.ViewHelper;
 
+
 public class Index extends JFrame {
 	
 	private static final long serialVersionUID = -7576523088264784541L;
+	
+	public static void main(String[] args) {
+		JFrame index = new Index();
+		index.setVisible(true);
+	}
 	
 	public Index() {
 		ViewHelper.getInstance().setupLookAndFeel();
@@ -26,7 +32,6 @@ public class Index extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.initComponents();
-		this.setVisible(true);
 	}
 	
 	private void initComponents() {
