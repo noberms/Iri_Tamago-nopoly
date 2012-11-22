@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.helper.ViewHelper;
@@ -150,7 +149,9 @@ public class ChooseToken extends JFrame {
 	}
 	
 	private void executeStart() {
-		JOptionPane.showMessageDialog(null, "You are starting a new game...", "Start Game", JOptionPane.PLAIN_MESSAGE);
+		GameBoard gameBoard = new GameBoard();
+		gameBoard.setVisible(true);
+		this.dispose();
 	}
 		
 }
