@@ -17,7 +17,7 @@ import view.helper.ViewHelper;
 public class Index extends JFrame {
 	
 	private static final long serialVersionUID = -7576523088264784541L;
-	
+	//Cleanup Merging
 	public static void main(String[] args) {
 		JFrame index = new Index();
 		index.setVisible(true);
