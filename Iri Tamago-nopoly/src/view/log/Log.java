@@ -3,7 +3,7 @@ package view.log;
 import javax.swing.JFrame;
 
 public class Log extends JFrame {
-	
+	//Forward
 	private static final long serialVersionUID = -7576523088264784541L;
 	
 	public Log(String title) {
