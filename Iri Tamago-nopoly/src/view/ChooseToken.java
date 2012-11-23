@@ -20,13 +20,16 @@ public class ChooseToken extends JFrame {
 	
 	private static final long serialVersionUID = -1575414961698739525L;
 	
+	private JPanel menuPanel;
+	private GridBagConstraints constraints3;
+	
 	ChooseToken() {
 		this.setTitle("Iri Tamagonopoly - Choose a Token");
 		int width = 671;
 		int height = 525;
 		this.setSize(width, height);
 		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
-		this.setResizable(false);
+		//this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.initComponents();
@@ -99,14 +102,15 @@ public class ChooseToken extends JFrame {
 		constraints1.insets = new Insets(130, 0, 0, 0);
 		mainPanel.add(tokenPanels[1], constraints1);
 		
-		JPanel menuPanel = ViewHelper.getInstance().createPanel(null, 200, 35);
-		GridBagConstraints constraints3 = new GridBagConstraints();
+		this.menuPanel = ViewHelper.getInstance().createPanel(null, 200, 35);
+		this.constraints3 = new GridBagConstraints();
 		//constraints3.fill = GridBagConstraints.HORIZONTAL;
 		//constraints1.insets = new Insets(0, 0, 0, 0);
 
 		vh.addComponent(menuPanel, 0, 2, new Insets(20, 0, 0, 0), mainPanel, constraints1);
-		vh.addComponent(this.getBackButton(), 0, 0, menuPanel, constraints3);
-		vh.addComponent(this.getStartButton(), 1, 0, menuPanel, constraints3);
+		vh.addComponent(this.getBackButton(), 0, 0, this.menuPanel, this.constraints3);
+		vh.addComponent(this.getStartButton(), 1, 0, this.menuPanel, this.constraints3);
+		//vh.addComponent(new JProgressBar(0, 100), 1, 0, this.menuPanel, this.constraints3);
 		
 		//constraints1.ipadx = 0;
 		//constraints1.ipady = 0;
@@ -146,12 +150,29 @@ public class ChooseToken extends JFrame {
 	}
 	
 	private void executeStart() {
-		JProgressBar jpbar = new JProgressBar();
+		
+		JProgressBar jpbar = new JProgressBar(0, 100);
+		this.menuPanel.removeAll();
+		this.menuPanel.revalidate();
+		this.repaint();
+		
+		ViewHelper.getInstance().addComponent(jpbar, 0, 0, this.menuPanel, this.constraints3);
+		//this.menuPanel.add(jpbar, this.constraints3);
+		this.menuPanel.revalidate();
+		this.repaint();
 		/* CHECK 
 		 * http://www.dreamincode.net/forums/topic/27952-progress-bar-tutorial/
 		 * http://docs.oracle.com/javase/tutorial/uiswing/components/progress.html#bars
 		 */
 		GameBoard gameBoard = new GameBoard();
+		
+		for(int i=0; i<100; i++) {
+			jpbar.setValue(i);
+			jpbar.repaint();
+			try{Thread.sleep(50);}
+			catch (InterruptedException err){}
+		}
+		
 		gameBoard.setVisible(true);
 		this.dispose();
 	}
