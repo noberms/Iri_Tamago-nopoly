@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.JComponent;
@@ -78,13 +79,28 @@ public class ViewHelper {
     }
 	
 	public void addComponent(JComponent component, int gridx, int gridy, JComponent base, GridBagConstraints constraints) {
-		constraints.gridx = gridx;
-		constraints.gridy = gridy;
+		if(gridx > 0) {
+			constraints.gridx = gridx;
+		}
+		if(gridy > 0) {
+			constraints.gridy = gridy;
+		}
 		base.add(component, constraints);
 	}
 	
-	public Dimension getScreenDimension() {
-		return Toolkit.getDefaultToolkit().getScreenSize();
+	public void addComponent(JComponent component, int gridx, int gridy, Insets insets, JComponent base, GridBagConstraints constraints) {
+		constraints.insets = insets;
+		this.addComponent(component, gridx, gridy, base, constraints);
+	}
+	
+	public int getLocationX(int componentWidth) {
+		int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+		return (screenWidth - componentWidth) / 2;
+	}
+	
+	public int getLocationY(int componentHeight) {
+		int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+		return (screenHeight - componentHeight) / 2;
 	}
 	
 }

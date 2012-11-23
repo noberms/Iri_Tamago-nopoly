@@ -1,10 +1,12 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -26,8 +28,10 @@ public class GameBoard extends JFrame {
 	
 	public GameBoard() {
 		this.setTitle("Iri Tamagonopoly - Game Board");
-		this.setSize(721, 580);
-		this.setLocation(200, 200);
+		int height = 580;
+		int width = 721;
+		this.setSize(width, height);
+		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -44,21 +48,18 @@ public class GameBoard extends JFrame {
 		BackgroundPanel backgroundPanel = null;
 		if(image != null) {
 			ViewHelper vh = ViewHelper.getInstance();
-			
+			//Create Background
 			backgroundPanel = new BackgroundPanel(image, BackgroundPanel.ACTUAL, 0.0f, 0.0f);
 			backgroundPanel.setPaint(Color.WHITE);
 			backgroundPanel.setLayout(new GridBagLayout());
-			this.getContentPane().add(backgroundPanel);
-			
-			JPanel menuPanel = ViewHelper.getInstance().createPanel(new GridBagLayout());
-			GridBagConstraints gbc1 = new GridBagConstraints();
-			gbc1.insets = new Insets(150, 565, 10, 10);
-			backgroundPanel.add(menuPanel, gbc1);
-			
+			this.add(backgroundPanel);
+			//Create Menu Panel as container of buttons
+			JPanel menuPanel = vh.createPanel(new GridBagLayout(), Color.WHITE);
+			vh.addComponent(menuPanel, 0, 0, new Insets(150, 565, 10, 10), backgroundPanel, new GridBagConstraints());
+			//Create Buttons and add to Menu Panel
 			GridBagConstraints gbc2 = new GridBagConstraints();
 			gbc2.fill = GridBagConstraints.HORIZONTAL;
-			gbc2.insets = new Insets(3, 0, 0, 3);
-			
+			gbc2.insets = new Insets(3, 0, 0, 0);
 			vh.addComponent(this.getScreenResolutionButton(), 0, 0, menuPanel, gbc2);
 			vh.addComponent(this.getNewGame(), 0, 1, menuPanel, gbc2);
 			vh.addComponent(this.getIndex(), 0, 2, menuPanel, gbc2);
@@ -68,6 +69,8 @@ public class GameBoard extends JFrame {
 	
 	private JButton getScreenResolutionButton() {
 		JButton screenResolution = new JButton("Screen Resolution");
+		//System.out.println(screenResolution.getFont().getSize());
+		screenResolution.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		screenResolution.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -79,6 +82,7 @@ public class GameBoard extends JFrame {
 
 	private JButton getNewGame() {
 		JButton exit = new JButton("New Game");
+		exit.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -90,6 +94,7 @@ public class GameBoard extends JFrame {
 	
 	private JButton getIndex() {
 		JButton index = new JButton("Index");
+		index.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		index.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -101,6 +106,7 @@ public class GameBoard extends JFrame {
 	
 	private JButton getExitButton() {
 		JButton exit = new JButton("Exit");
+		exit.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -111,8 +117,8 @@ public class GameBoard extends JFrame {
 	}
 	
 	private void executeScreenResolution() {
-		int width = (int)ViewHelper.getInstance().getScreenDimension().getWidth();
-		int height = (int)ViewHelper.getInstance().getScreenDimension().getHeight();
+		int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+		int height = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 		
 		JOptionPane.showMessageDialog(null, "Screen resolution is " + width + " x " + height, "Screen Resolution", JOptionPane.PLAIN_MESSAGE);
 	}

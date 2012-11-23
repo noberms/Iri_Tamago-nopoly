@@ -20,8 +20,10 @@ public class ChooseToken extends JFrame {
 	
 	ChooseToken() {
 		this.setTitle("Iri Tamagonopoly - Choose a Token");
-		this.setSize(671, 525);
-		this.setLocation(200, 200);
+		int width = 671;
+		int height = 525;
+		this.setSize(width, height);
+		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

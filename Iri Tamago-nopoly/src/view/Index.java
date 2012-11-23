@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,8 +27,10 @@ public class Index extends JFrame {
 	public Index() {
 		ViewHelper.getInstance().setupLookAndFeel();
 		this.setTitle("Iri Tamagonopoly - Index");
-		this.setSize(500, 390);
-		this.setLocation(200, 200);
+		int width = 500;
+		int height = 390;
+		this.setSize(width, height);
+		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -40,7 +43,7 @@ public class Index extends JFrame {
 		JPanel menu = vh.createPanel(new GridBagLayout());
 		GridBagConstraints gbc2 = new GridBagConstraints();
 		gbc2.fill = GridBagConstraints.HORIZONTAL;
-		gbc2.insets = new Insets(3, 0, 0, 3);
+		gbc2.insets = new Insets(3, 0, 0, 0);
 		
 		vh.addComponent(this.createNewGameButton(), 0, 0, menu, gbc2);
 		vh.addComponent(this.createTutorialButton(), 0, 1, menu, gbc2);
@@ -48,7 +51,7 @@ public class Index extends JFrame {
 		vh.addComponent(this.createExitButton(), 0, 3, menu, gbc2);
 
 		GridBagConstraints gbc1 = new GridBagConstraints();
-		JPanel main = new JPanel(new GridBagLayout());
+		JPanel main = vh.createPanel(new GridBagLayout());
 		gbc1.gridx = 1;
 		gbc1.gridy = 1;
 		
@@ -61,6 +64,7 @@ public class Index extends JFrame {
 	
 	private JButton createNewGameButton() {
 		JButton newGame = new JButton("New Game");
+		newGame.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		newGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -72,6 +76,7 @@ public class Index extends JFrame {
 	
 	private JButton createTutorialButton() {
 		JButton tutorial = new JButton("Tutorial");
+		tutorial.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		tutorial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -83,6 +88,7 @@ public class Index extends JFrame {
 		
 	private JButton createAboutButton() {
 		JButton about = new JButton("About Iri Tamago");
+		about.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -94,6 +100,7 @@ public class Index extends JFrame {
 	
 	private JButton createExitButton() {
 		JButton exit = new JButton("Exit");
+		exit.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
