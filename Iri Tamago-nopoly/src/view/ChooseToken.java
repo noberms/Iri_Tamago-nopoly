@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 import view.helper.ViewHelper;
 
@@ -31,7 +33,7 @@ public class ChooseToken extends JFrame {
 	}
 	
 	private void initComponents() {
-		
+		ViewHelper vh = ViewHelper.getInstance();
 		JPanel mainPanel = ViewHelper.getInstance().createPanel();
 		mainPanel.setLayout(new GridBagLayout());
 		JPanel tokenPanels[] = new JPanel[2];
@@ -99,31 +101,23 @@ public class ChooseToken extends JFrame {
 		
 		JPanel menuPanel = ViewHelper.getInstance().createPanel(null, 200, 35);
 		GridBagConstraints constraints3 = new GridBagConstraints();
-		constraints3.fill = GridBagConstraints.HORIZONTAL;
+		//constraints3.fill = GridBagConstraints.HORIZONTAL;
 		//constraints1.insets = new Insets(0, 0, 0, 0);
-		
-		JButton back = this.getBackButton();
-		constraints3.gridx = 0;
-		constraints3.gridy = 0;
-		menuPanel.add(back, constraints3);
-		
-		JButton start = this.getStartButton();
-		constraints3.gridx = 1;
-		menuPanel.add(start, constraints3);
+
+		vh.addComponent(menuPanel, 0, 2, new Insets(20, 0, 0, 0), mainPanel, constraints1);
+		vh.addComponent(this.getBackButton(), 0, 0, menuPanel, constraints3);
+		vh.addComponent(this.getStartButton(), 1, 0, menuPanel, constraints3);
 		
 		//constraints1.ipadx = 0;
 		//constraints1.ipady = 0;
-		constraints1.gridx = 0;
-		constraints1.gridy = 2;
-		constraints1.insets = new Insets(20, 0, 0, 0);
-		mainPanel.add(menuPanel, constraints1);
 		
-		this.add(mainPanel);
+		this.getContentPane().add(mainPanel);
 		
 	}
 	
 	private JButton getBackButton() {
 		JButton back = new JButton("Back");
+		back.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -135,6 +129,7 @@ public class ChooseToken extends JFrame {
 	
 	private JButton getStartButton() {
 		JButton start = new JButton("Start");
+		start.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		start.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -151,6 +146,11 @@ public class ChooseToken extends JFrame {
 	}
 	
 	private void executeStart() {
+		JProgressBar jpbar = new JProgressBar();
+		/* CHECK 
+		 * http://www.dreamincode.net/forums/topic/27952-progress-bar-tutorial/
+		 * http://docs.oracle.com/javase/tutorial/uiswing/components/progress.html#bars
+		 */
 		GameBoard gameBoard = new GameBoard();
 		gameBoard.setVisible(true);
 		this.dispose();
