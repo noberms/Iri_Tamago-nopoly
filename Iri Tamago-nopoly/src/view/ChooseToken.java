@@ -100,12 +100,12 @@ public class ChooseToken extends JFrame {
 		constraints3.fill = GridBagConstraints.HORIZONTAL;
 		//constraints1.insets = new Insets(0, 0, 0, 0);
 		
-		JButton back = this.createBackButton();
+		JButton back = this.getBackButton();
 		constraints3.gridx = 0;
 		constraints3.gridy = 0;
 		menuPanel.add(back, constraints3);
 		
-		JButton start = this.createStartButton();
+		JButton start = this.getStartButton();
 		constraints3.gridx = 1;
 		menuPanel.add(start, constraints3);
 		
@@ -120,7 +120,7 @@ public class ChooseToken extends JFrame {
 		
 	}
 	
-	private JButton createBackButton() {
+	private JButton getBackButton() {
 		JButton back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
 			@Override
@@ -131,7 +131,7 @@ public class ChooseToken extends JFrame {
 		return back;
 	}
 	
-	private JButton createStartButton() {
+	private JButton getStartButton() {
 		JButton start = new JButton("Start");
 		start.addActionListener(new ActionListener() {
 			@Override

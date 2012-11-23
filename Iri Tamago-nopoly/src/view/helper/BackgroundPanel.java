@@ -1,8 +1,20 @@
 package view.helper;
 
-import java.awt.*;
-import java.awt.image.*;
-import javax.swing.*;
+import java.awt.Paint;
+import java.awt.Image;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Insets;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
+
 
 /*
  *  Support custom painting on a panel in the form of
@@ -13,8 +25,8 @@ import javax.swing.*;
  *  Also, any component added directly to this panel will be made
  *  non-opaque so that the custom painting can show through.
  */
-public class BackgroundPanel extends JPanel
-{
+public class BackgroundPanel extends JPanel {
+	private static final long serialVersionUID = 8849270684943808811L;
 	public static final int SCALED = 0;
 	public static final int TILED = 1;
 	public static final int ACTUAL = 2;
@@ -29,16 +41,14 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *  Set image as the background with the SCALED style
 	 */
-	public BackgroundPanel(Image image)
-	{
+	public BackgroundPanel(Image image) {
 		this(image, SCALED);
 	}
 
 	/*
 	 *  Set image as the background with the specified style
 	 */
-	public BackgroundPanel(Image image, int style)
-	{
+	public BackgroundPanel(Image image, int style) {
 		setImage( image );
 		setStyle( style );
 		setLayout( new BorderLayout() );
@@ -47,8 +57,7 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *  Set image as the backround with the specified style and alignment
 	 */
-	public BackgroundPanel(Image image, int style, float alignmentX, float alignmentY)
-	{
+	public BackgroundPanel(Image image, int style, float alignmentX, float alignmentY) {
 		setImage( image );
 		setStyle( style );
 		setImageAlignmentX( alignmentX );
@@ -59,8 +68,7 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *  Use the Paint interface to paint a background
 	 */
-	public BackgroundPanel(Paint painter)
-	{
+	public BackgroundPanel(Paint painter) {
 		setPaint( painter );
 		setLayout( new BorderLayout() );
 	}
@@ -68,8 +76,7 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *	Set the image used as the background
 	 */
-	public void setImage(Image image)
-	{
+	public void setImage(Image image) {
 		this.image = image;
 		repaint();
 	}
@@ -77,8 +84,7 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *	Set the style used to paint the background image
 	 */
-	public void setStyle(int style)
-	{
+	public void setStyle(int style) {
 		this.style = style;
 		repaint();
 	}
@@ -86,8 +92,7 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *	Set the Paint object used to paint the background
 	 */
-	public void setPaint(Paint painter)
-	{
+	public void setPaint(Paint painter) {
 		this.painter = painter;
 		repaint();
 	}
@@ -95,8 +100,7 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *  Specify the horizontal alignment of the image when using ACTUAL style
 	 */
-	public void setImageAlignmentX(float alignmentX)
-	{
+	public void setImageAlignmentX(float alignmentX) {
 		this.alignmentX = alignmentX > 1.0f ? 1.0f : alignmentX < 0.0f ? 0.0f : alignmentX;
 		repaint();
 	}
@@ -104,8 +108,7 @@ public class BackgroundPanel extends JPanel
 	/*
 	 *  Specify the horizontal alignment of the image when using ACTUAL style
 	 */
-	public void setImageAlignmentY(float alignmentY)
-	{
+	public void setImageAlignmentY(float alignmentY) {
 		this.alignmentY = alignmentY > 1.0f ? 1.0f : alignmentY < 0.0f ? 0.0f : alignmentY;
 		repaint();
 	}

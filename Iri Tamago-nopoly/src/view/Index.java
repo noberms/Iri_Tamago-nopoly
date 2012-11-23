@@ -35,34 +35,24 @@ public class Index extends JFrame {
 	}
 	
 	private void initComponents() {
-				
-		JPanel menu = ViewHelper.getInstance().createPanel(new GridBagLayout());
+
+		ViewHelper vh = ViewHelper.getInstance();
+		JPanel menu = vh.createPanel(new GridBagLayout());
 		GridBagConstraints gbc2 = new GridBagConstraints();
 		gbc2.fill = GridBagConstraints.HORIZONTAL;
-		gbc2.insets = new Insets(5, 5, 5, 5);
+		gbc2.insets = new Insets(3, 0, 0, 3);
 		
-		JButton newGame = this.createNewGameButton();
-		gbc2.gridx = 0;
-		gbc2.gridy = 0;
-		menu.add(newGame, gbc2);
-		
-		JButton tutorial = this.createTutorialButton();
-		gbc2.gridy = 1;
-		menu.add(tutorial, gbc2);
-		
-		JButton about = this.createAboutButton();
-		gbc2.gridy = 2;
-		menu.add(about, gbc2);
-		
-		JButton exit = this.createExitButton();
-		gbc2.gridy = 3;
-		menu.add(exit, gbc2);
+		vh.addComponent(this.createNewGameButton(), 0, 0, menu, gbc2);
+		vh.addComponent(this.createTutorialButton(), 0, 1, menu, gbc2);
+		vh.addComponent(this.createAboutButton(), 0, 2, menu, gbc2);
+		vh.addComponent(this.createExitButton(), 0, 3, menu, gbc2);
 
 		GridBagConstraints gbc1 = new GridBagConstraints();
 		JPanel main = new JPanel(new GridBagLayout());
 		gbc1.gridx = 1;
 		gbc1.gridy = 1;
-		gbc1.insets = new Insets(150, 300, 10, 10);
+		
+		gbc1.insets = new Insets(160, 300, 10, 10);
 		main.add(menu, gbc1);
 		
 		this.add(main);

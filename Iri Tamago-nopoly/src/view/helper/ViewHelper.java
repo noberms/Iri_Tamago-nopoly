@@ -2,8 +2,11 @@ package view.helper;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -73,5 +76,15 @@ public class ViewHelper {
         tempPanel.setPreferredSize(new Dimension(width, height));
         return tempPanel;
     }
+	
+	public void addComponent(JComponent component, int gridx, int gridy, JComponent base, GridBagConstraints constraints) {
+		constraints.gridx = gridx;
+		constraints.gridy = gridy;
+		base.add(component, constraints);
+	}
+	
+	public Dimension getScreenDimension() {
+		return Toolkit.getDefaultToolkit().getScreenSize();
+	}
 	
 }
