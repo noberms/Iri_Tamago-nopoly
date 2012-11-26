@@ -76,7 +76,7 @@ public class Board {
 		return board;
 	}
 	
-	public TileWrapper[] getBoard() {
+	public TileWrapper[] getTiles() {
 		return this.tiles;
 	}
 	

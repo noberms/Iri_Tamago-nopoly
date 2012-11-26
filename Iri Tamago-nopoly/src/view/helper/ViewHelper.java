@@ -71,12 +71,12 @@ public class ViewHelper {
         return tempPanel;
     }
 	
-	public JPanel createPanel(int size) {
-		return this.createPanel(size, size);
+	public TilePanel createTilePanel(int index, int size) {
+		return this.createTilePanel(index, size, size);
 	}
 	
-	public JPanel createPanel(int width, int height) {
-		JPanel tempPanel = new JPanel();
+	public TilePanel createTilePanel(int index, int width, int height) {
+		TilePanel tempPanel = new TilePanel(index);
 		tempPanel.setMinimumSize(new Dimension(width, height));
 		tempPanel.setMaximumSize(new Dimension(width, height));
 		tempPanel.setPreferredSize(new Dimension(width, height));
