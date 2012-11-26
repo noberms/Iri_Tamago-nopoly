@@ -14,14 +14,15 @@ import model.tile.deck.community.CommunityChest;
 
 public class Board {
 	
-	private final TileWrapper[] board;
+	private static Board board;
+	private final TileWrapper[] tiles;
 	
-	public Board() {
+	private Board() {
 		
 		HashMap<String, Card> communityChest = new CommunityChest(null).getCards();
 		HashMap<String, Card> chanceCards = new ChanceCards(null).getCards();
 		
-		this.board = new TileWrapper[] {
+		this.tiles = new TileWrapper[] {
 						new TileWrapper(653, 653, new Tile("Go", "Tile Image")),
 						new TileWrapper(591, 653, new Estate("Old Kent Road", "Estate Image", 60, 30, "brown", 50, 50, new int[]{2, 10, 30, 90,160,250})),
 						new TileWrapper(529, 653, new CommunityChest("Community Chest Image 1", communityChest)),
@@ -68,16 +69,23 @@ public class Board {
 					};
 	}
 	
+	public static Board getInstance() {
+		if(board == null) {
+			board = new Board();
+		}
+		return board;
+	}
+	
 	public TileWrapper[] getBoard() {
-		return this.board;
+		return this.tiles;
 	}
 	
 	public TileWrapper getTileWrapper(int index) {
-		return this.board[index];
+		return this.tiles[index];
 	}
 	
 	public Tile getTile(int index) {
-		return this.board[index].getTile();
+		return this.tiles[index].getTile();
 	}
 	
 }
