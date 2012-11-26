@@ -6,6 +6,7 @@ import model.tile.TileWrapper;
 public class BoardTest {
 	
 	public static void main(String[] args) {
+		//Model
 		Board board = new Board();
 		int x = 1;
 		for(TileWrapper tileWrapper : board.getBoard()) {
