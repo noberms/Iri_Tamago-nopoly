@@ -7,9 +7,9 @@ public class BoardTest {
 	
 	public static void main(String[] args) {
 		Board board = Board.getInstance();
-		int x = 1;
+		int x = 0;
 		for(TileWrapper tileWrapper : board.getTiles()) {
-			//System.out.println(x++ + " " + tileWrapper.getTile().getName() + " (" + tileWrapper.getCoordX() + ", " + tileWrapper.getCoordY() + ")");
+			System.out.println(x++ + " " + tileWrapper.getTile().getName() + " (" + tileWrapper.getTile().getImage() + ")");
 		}
 	}
 
