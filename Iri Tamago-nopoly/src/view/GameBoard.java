@@ -106,7 +106,6 @@ public class GameBoard extends JFrame {
 					
 				});
 				
-				//System.out.println("this.tilePanels[" + i + "], " + gridx + ", " + gridy + ", boardPanel, gameBoardConstrians");
 				vh.addComponent(this.tilePanels[i], gridx, gridy, boardPanel, gameBoardConstraints);
 				
 				if(i<10) {
@@ -147,7 +146,6 @@ public class GameBoard extends JFrame {
 	
 	private JButton getScreenResolutionButton() {
 		JButton screenResolution = new JButton("Screen Resolution");
-		//System.out.println(screenResolution.getFont().getSize());
 		screenResolution.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		screenResolution.addActionListener(new ActionListener() {
 			@Override
