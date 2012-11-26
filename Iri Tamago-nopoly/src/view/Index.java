@@ -17,13 +17,14 @@ import view.helper.ViewHelper;
 public class Index extends JFrame {
 	
 	private static final long serialVersionUID = -7576523088264784541L;
-	//Cleanup Merging
+	
 	public static void main(String[] args) {
 		JFrame index = new Index();
 		index.setVisible(true);
 	}
 	
 	public Index() {
+		// Master Branch
 		ViewHelper.getInstance().setupLookAndFeel();
 		this.setTitle("Iri Tamagonopoly - Index");
 		this.setSize(500, 390);
