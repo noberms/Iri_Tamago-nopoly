@@ -80,10 +80,6 @@ public class Board {
 		return this.tiles;
 	}
 	
-	public TileWrapper getTileWrapper(int index) {
-		return this.tiles[index];
-	}
-	
 	public Tile getTile(int index) {
 		return this.tiles[index].getTile();
 	}
