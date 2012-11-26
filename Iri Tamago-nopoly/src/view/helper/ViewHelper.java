@@ -57,14 +57,7 @@ public class ViewHelper {
     }
 	
 	public JPanel createPanel(Color color, int size) {
-        JPanel tempPanel = new JPanel();
-        if(color != null) {
-        	tempPanel.setBackground(color);
-        }
-        tempPanel.setMinimumSize(new Dimension(size, size));
-        tempPanel.setMaximumSize(new Dimension(size, size));
-        tempPanel.setPreferredSize(new Dimension(size, size));
-        return tempPanel;
+        return this.createPanel(color, size, size);
     }
 	
 	public JPanel createPanel(Color color, int width, int height) {
@@ -78,13 +71,22 @@ public class ViewHelper {
         return tempPanel;
     }
 	
+	public JPanel createPanel(int size) {
+		return this.createPanel(size, size);
+	}
+	
+	public JPanel createPanel(int width, int height) {
+		JPanel tempPanel = new JPanel();
+		tempPanel.setMinimumSize(new Dimension(width, height));
+		tempPanel.setMaximumSize(new Dimension(width, height));
+		tempPanel.setPreferredSize(new Dimension(width, height));
+		tempPanel.setOpaque(false);
+		return tempPanel;
+	}
+	
 	public void addComponent(JComponent component, int gridx, int gridy, JComponent base, GridBagConstraints constraints) {
-		if(gridx > 0) {
-			constraints.gridx = gridx;
-		}
-		if(gridy > 0) {
-			constraints.gridy = gridy;
-		}
+		constraints.gridx = gridx;
+		constraints.gridy = gridy;
 		base.add(component, constraints);
 	}
 	

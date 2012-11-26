@@ -21,8 +21,6 @@ public class ChooseToken extends JFrame {
 	private static final long serialVersionUID = -1575414961698739525L;
 	
 	private JPanel menuPanel;
-	private JPanel progressPanel;
-	private JProgressBar progressbar;
 	
 	ChooseToken() {
 		this.setTitle("Iri Tamagonopoly - Choose a Token");
@@ -97,27 +95,20 @@ public class ChooseToken extends JFrame {
 		
 		constraints1.gridx = 0;
 		constraints1.gridy = 0;
-		constraints1.fill = GridBagConstraints.HORIZONTAL;
+		//constraints1.fill = GridBagConstraints.HORIZONTAL;
 		mainPanel.add(tokenPanels[0], constraints1);
 		constraints1.gridy = 1;
 		constraints1.insets = new Insets(130, 0, 0, 0);
 		mainPanel.add(tokenPanels[1], constraints1);
 		
 		this.menuPanel = ViewHelper.getInstance().createPanel(null, 200, 35);
-		//this.menuPanel.setVisible(false);
-		this.progressPanel = ViewHelper.getInstance().createPanel(null, 200, 35);
-		//this.progressPanel.setVisible(false);
-		this.progressbar = new JProgressBar(0, 100);
 		GridBagConstraints constraints3 = new GridBagConstraints();
-		//constraints3.fill = GridBagConstraints.HORIZONTAL;
+		constraints3.fill = GridBagConstraints.HORIZONTAL;
 		//constraints1.insets = new Insets(0, 0, 0, 0);
 
 		vh.addComponent(this.getBackButton(), 0, 0, this.menuPanel, constraints3);
 		vh.addComponent(this.getStartButton(), 1, 0, this.menuPanel, constraints3);
 		vh.addComponent(this.menuPanel, 0, 2, new Insets(20, 0, 0, 0), mainPanel, constraints1);
-		vh.addComponent(this.progressbar, 0, 0, this.menuPanel, constraints1);
-		//vh.addComponent(this.progressPanel, 0, 2, new Insets(20, 0, 0, 0), mainPanel, constraints1);
-		//vh.addComponent(new JProgressBar(0, 100), 1, 0, this.menuPanel, this.constraints3);
 		
 		//constraints1.ipadx = 0;
 		//constraints1.ipady = 0;
@@ -157,30 +148,22 @@ public class ChooseToken extends JFrame {
 	}
 	
 	private void executeStart() {
-		
-		//JProgressBar jpbar = new JProgressBar(0, 100);
-		//this.menuPanel.repaint();
-		
-		//this.progressPanel.setVisible(true);
-		//this.menuPanel.setVisible(false);
-		
-		//ViewHelper.getInstance().addComponent(jpbar, 0, 0, this.menuPanel, this.constraints3);
-		//this.menuPanel.add(jpbar, this.constraints3);
-		//this.menuPanel.revalidate();
-		//this.repaint();
 		/* CHECK 
 		 * http://www.dreamincode.net/forums/topic/27952-progress-bar-tutorial/
 		 * http://docs.oracle.com/javase/tutorial/uiswing/components/progress.html#bars
 		 */
-		GameBoard gameBoard = new GameBoard();
+		this.menuPanel.removeAll();
+		this.menuPanel.revalidate();
+		this.menuPanel.repaint();
+		ViewHelper vh = ViewHelper.getInstance();
+		JProgressBar jpBar = new JProgressBar(0, 100);
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		vh.addComponent(jpBar, 0, 0, this.menuPanel, constraints);
+		this.menuPanel.revalidate();
+		this.menuPanel.repaint();
 		
-		for(int i=0; i<100; i++) {
-			this.progressbar.setValue(i);
-			this.progressbar.repaint();
-			try{Thread.sleep(50);}
-			catch (InterruptedException err){}
-		}
-		
+		GameBoard gameBoard = new GameBoard(jpBar);
 		gameBoard.setVisible(true);
 		this.dispose();
 	}
