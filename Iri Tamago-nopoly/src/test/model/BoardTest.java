@@ -9,7 +9,7 @@ public class BoardTest {
 		Board board = Board.getInstance();
 		int x = 1;
 		for(TileWrapper tileWrapper : board.getTiles()) {
-			System.out.println(x++ + " " + tileWrapper.getTile().getName() + " (" + tileWrapper.getCoordX() + ", " + tileWrapper.getCoordY() + ")");
+			//System.out.println(x++ + " " + tileWrapper.getTile().getName() + " (" + tileWrapper.getCoordX() + ", " + tileWrapper.getCoordY() + ")");
 		}
 	}
 

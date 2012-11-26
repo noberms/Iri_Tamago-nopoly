@@ -14,8 +14,20 @@ public class CommunityChest extends Deck {
 		}
 	}
 	
+	public CommunityChest(String name, String image) {
+		super(name, image);
+		for(CommunityChestEnum cce : CommunityChestEnum.values()) {
+			this.cards.put(cce.name(), cce.card());
+		}
+	}
+	
 	public CommunityChest(String image, HashMap<String, Card> cards) {
 		super("Community Chest", image);
+		this.cards = cards;
+	}
+	
+	public CommunityChest(String name, String image, HashMap<String, Card> cards) {
+		super(name, image);
 		this.cards = cards;
 	}
 	

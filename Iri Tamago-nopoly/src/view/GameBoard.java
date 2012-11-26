@@ -63,7 +63,7 @@ public class GameBoard extends JFrame {
 			ViewHelper vh = ViewHelper.getInstance();
 			//Create Background
 			JPanel gameBoardPanel = vh.createPanel(new GridBagLayout());
-			gameBoardPanel.setBackground(Color.PINK);
+			gameBoardPanel.setBackground(Color.WHITE);
 			this.getContentPane().add(gameBoardPanel);
 			
 			GridBagConstraints mainConstraint = new GridBagConstraints();
@@ -101,7 +101,7 @@ public class GameBoard extends JFrame {
 				
 				this.tilePanels[i].addMouseListener(new MouseAdapter() {
 					public void mousePressed(MouseEvent e) {
-						System.out.println("You pressed " + Board.getInstance().getTile(((TilePanel)e.getSource()).getIndex()).getName());
+						JOptionPane.showMessageDialog(null, "You pressed " + Board.getInstance().getTile(((TilePanel)e.getSource()).getIndex()).getName(), "Location", JOptionPane.PLAIN_MESSAGE);
 					}
 					
 				});
@@ -119,7 +119,9 @@ public class GameBoard extends JFrame {
 					gridy++;
 				}
 			}
-
+			/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
+			progressBar.setValue(progressBar.getValue() + 10);
+			
 			gameBoardConstraints.gridheight = 9;
 			gameBoardConstraints.gridwidth = 9;
 			JPanel mid = vh.createPanel(new GridBagLayout(), Color.BLUE);
@@ -139,7 +141,7 @@ public class GameBoard extends JFrame {
 			vh.addComponent(this.getExitButton(), 0, 3, menuPanel, gbc2);
 			
 			/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
-			progressBar.setValue(progressBar.getValue() + 70);
+			progressBar.setValue(progressBar.getValue() + 60);
 		}
 	}
 	
