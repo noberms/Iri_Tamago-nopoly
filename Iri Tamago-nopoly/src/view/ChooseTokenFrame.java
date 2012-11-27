@@ -27,7 +27,7 @@ public class ChooseTokenFrame extends JFrame {
 		int width = 671;
 		int height = 525;
 		this.setSize(width, height);
-		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
+		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -105,9 +105,10 @@ public class ChooseTokenFrame extends JFrame {
 		GridBagConstraints constraints3 = new GridBagConstraints();
 		constraints3.fill = GridBagConstraints.HORIZONTAL;
 		//constraints1.insets = new Insets(0, 0, 0, 0);
-		
-		vh.addComponent(this.getBackButton(), 0, 0, this.menuPanel, constraints3);
-		vh.addComponent(this.getStartButton(), 1, 0, this.menuPanel, constraints3);
+		JButton back = this.getBackButton();
+		JButton start = this.getStartButton();
+		vh.addComponent(back, 0, 0, this.menuPanel, constraints3);
+		vh.addComponent(start, 1, 0, this.menuPanel, constraints3);
 		vh.addComponent(this.menuPanel, 0, 2, new Insets(20, 0, 0, 0), mainPanel, constraints1);
 		
 		//constraints1.ipadx = 0;
@@ -164,6 +165,7 @@ public class ChooseTokenFrame extends JFrame {
 		this.menuPanel.repaint();
 		
 		GameBoardFrame gameBoard = new GameBoardFrame(jpBar);
+		gameBoard.setLocation(this.getLocation());
 		gameBoard.setVisible(true);
 		this.dispose();
 	}

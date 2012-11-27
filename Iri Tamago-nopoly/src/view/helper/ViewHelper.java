@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.Toolkit;
 
 import javax.swing.JComponent;
@@ -95,14 +96,10 @@ public class ViewHelper {
 		this.addComponent(component, gridx, gridy, base, constraints);
 	}
 	
-	public int getLocationX(int componentWidth) {
+	public Point getCenterPoint(int componentWidth, int componentHeight) {
 		int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-		return (screenWidth - componentWidth) / 2;
-	}
-	
-	public int getLocationY(int componentHeight) {
 		int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-		return (screenHeight - componentHeight) / 2;
+		return new Point((screenWidth - componentWidth) / 2, (screenHeight - componentHeight) / 2);
 	}
 	
 }

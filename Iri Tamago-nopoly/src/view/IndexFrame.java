@@ -30,7 +30,7 @@ public class IndexFrame extends JFrame {
 		int width = 500;
 		int height = 390;
 		this.setSize(width, height);
-		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
+		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -112,6 +112,7 @@ public class IndexFrame extends JFrame {
 	
 	private void executeNewGame() {
 		ChooseTokenFrame chooseToken = new ChooseTokenFrame();
+		chooseToken.setLocation(this.getLocation());
 		chooseToken.setVisible(true);
 		this.dispose();
 	}

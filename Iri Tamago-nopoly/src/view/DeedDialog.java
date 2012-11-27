@@ -24,7 +24,7 @@ public class DeedDialog extends JDialog {
 		int height = 445;
 		this.setSize(width, height);
 		this.setResizable(false);
-		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
+		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.initComponents(deedIndex);
 	}

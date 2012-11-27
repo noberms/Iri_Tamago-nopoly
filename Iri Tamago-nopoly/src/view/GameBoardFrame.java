@@ -36,7 +36,7 @@ public class GameBoardFrame extends JFrame {
 		int height = 588;
 		int width = 722;
 		this.setSize(width, height);
-		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
+		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
