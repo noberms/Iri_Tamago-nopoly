@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -14,20 +15,22 @@ import javax.swing.JPanel;
 import view.helper.ViewHelper;
 
 
-public class Index extends JFrame {
+public class IndexFrame extends JFrame {
 	
 	private static final long serialVersionUID = -7576523088264784541L;
-	//Cleanup Merging
+	//A New Master Branch
 	public static void main(String[] args) {
-		JFrame index = new Index();
+		JFrame index = new IndexFrame();
 		index.setVisible(true);
 	}
 	
-	public Index() {
+	public IndexFrame() {
 		ViewHelper.getInstance().setupLookAndFeel();
 		this.setTitle("Iri Tamagonopoly - Index");
-		this.setSize(500, 390);
-		this.setLocation(200, 200);
+		int width = 500;
+		int height = 390;
+		this.setSize(width, height);
+		this.setLocation(ViewHelper.getInstance().getLocationX(width), ViewHelper.getInstance().getLocationY(height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -35,34 +38,24 @@ public class Index extends JFrame {
 	}
 	
 	private void initComponents() {
-				
-		JPanel menu = ViewHelper.getInstance().createPanel(new GridBagLayout());
+
+		ViewHelper vh = ViewHelper.getInstance();
+		JPanel menu = vh.createPanel(new GridBagLayout());
 		GridBagConstraints gbc2 = new GridBagConstraints();
 		gbc2.fill = GridBagConstraints.HORIZONTAL;
-		gbc2.insets = new Insets(5, 5, 5, 5);
+		gbc2.insets = new Insets(3, 0, 0, 0);
 		
-		JButton newGame = this.createNewGameButton();
-		gbc2.gridx = 0;
-		gbc2.gridy = 0;
-		menu.add(newGame, gbc2);
-		
-		JButton tutorial = this.createTutorialButton();
-		gbc2.gridy = 1;
-		menu.add(tutorial, gbc2);
-		
-		JButton about = this.createAboutButton();
-		gbc2.gridy = 2;
-		menu.add(about, gbc2);
-		
-		JButton exit = this.createExitButton();
-		gbc2.gridy = 3;
-		menu.add(exit, gbc2);
+		vh.addComponent(this.createNewGameButton(), 0, 0, menu, gbc2);
+		vh.addComponent(this.createTutorialButton(), 0, 1, menu, gbc2);
+		vh.addComponent(this.createAboutButton(), 0, 2, menu, gbc2);
+		vh.addComponent(this.createExitButton(), 0, 3, menu, gbc2);
 
 		GridBagConstraints gbc1 = new GridBagConstraints();
-		JPanel main = new JPanel(new GridBagLayout());
+		JPanel main = vh.createPanel(new GridBagLayout());
 		gbc1.gridx = 1;
 		gbc1.gridy = 1;
-		gbc1.insets = new Insets(150, 300, 10, 10);
+		
+		gbc1.insets = new Insets(160, 300, 10, 10);
 		main.add(menu, gbc1);
 		
 		this.add(main);
@@ -71,6 +64,7 @@ public class Index extends JFrame {
 	
 	private JButton createNewGameButton() {
 		JButton newGame = new JButton("New Game");
+		newGame.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		newGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -82,6 +76,7 @@ public class Index extends JFrame {
 	
 	private JButton createTutorialButton() {
 		JButton tutorial = new JButton("Tutorial");
+		tutorial.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		tutorial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -93,6 +88,7 @@ public class Index extends JFrame {
 		
 	private JButton createAboutButton() {
 		JButton about = new JButton("About Iri Tamago");
+		about.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -104,6 +100,7 @@ public class Index extends JFrame {
 	
 	private JButton createExitButton() {
 		JButton exit = new JButton("Exit");
+		exit.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

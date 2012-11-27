@@ -2,8 +2,12 @@ package view.helper;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -53,14 +57,7 @@ public class ViewHelper {
     }
 	
 	public JPanel createPanel(Color color, int size) {
-        JPanel tempPanel = new JPanel();
-        if(color != null) {
-        	tempPanel.setBackground(color);
-        }
-        tempPanel.setMinimumSize(new Dimension(size, size));
-        tempPanel.setMaximumSize(new Dimension(size, size));
-        tempPanel.setPreferredSize(new Dimension(size, size));
-        return tempPanel;
+        return this.createPanel(color, size, size);
     }
 	
 	public JPanel createPanel(Color color, int width, int height) {
@@ -73,5 +70,39 @@ public class ViewHelper {
         tempPanel.setPreferredSize(new Dimension(width, height));
         return tempPanel;
     }
+	
+	public TilePanel createTilePanel(int index, int size) {
+		return this.createTilePanel(index, size, size);
+	}
+	
+	public TilePanel createTilePanel(int index, int width, int height) {
+		TilePanel tempPanel = new TilePanel(index);
+		tempPanel.setMinimumSize(new Dimension(width, height));
+		tempPanel.setMaximumSize(new Dimension(width, height));
+		tempPanel.setPreferredSize(new Dimension(width, height));
+		tempPanel.setOpaque(false);
+		return tempPanel;
+	}
+	
+	public void addComponent(JComponent component, int gridx, int gridy, JComponent base, GridBagConstraints constraints) {
+		constraints.gridx = gridx;
+		constraints.gridy = gridy;
+		base.add(component, constraints);
+	}
+	
+	public void addComponent(JComponent component, int gridx, int gridy, Insets insets, JComponent base, GridBagConstraints constraints) {
+		constraints.insets = insets;
+		this.addComponent(component, gridx, gridy, base, constraints);
+	}
+	
+	public int getLocationX(int componentWidth) {
+		int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+		return (screenWidth - componentWidth) / 2;
+	}
+	
+	public int getLocationY(int componentHeight) {
+		int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+		return (screenHeight - componentHeight) / 2;
+	}
 	
 }
