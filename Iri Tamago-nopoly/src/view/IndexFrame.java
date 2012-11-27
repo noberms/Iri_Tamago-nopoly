@@ -27,10 +27,8 @@ public class IndexFrame extends JFrame {
 	public IndexFrame() {
 		ViewHelper.getInstance().setupLookAndFeel();
 		this.setTitle("Iri Tamagonopoly - Index");
-		int width = 500;
-		int height = 390;
-		this.setSize(width, height);
-		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
+		this.setSize(500, 390);
+		this.setLocation(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -112,7 +110,9 @@ public class IndexFrame extends JFrame {
 	
 	private void executeNewGame() {
 		ChooseTokenFrame chooseToken = new ChooseTokenFrame();
-		chooseToken.setLocation(this.getLocation());
+		if(!this.getLocation().equals(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()))) {
+			chooseToken.setLocation(this.getLocation());
+		}
 		chooseToken.setVisible(true);
 		this.dispose();
 	}

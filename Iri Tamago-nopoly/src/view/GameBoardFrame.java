@@ -57,7 +57,7 @@ public class GameBoardFrame extends JFrame {
 		/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
 		progressBar.setValue(progressBar.getValue() + 10);
 		
-		if(image != null) {
+		//if(image != null) {
 			ViewHelper vh = ViewHelper.getInstance();
 			//Create Background
 			JPanel gameBoardPanel = vh.createPanel(new GridBagLayout());
@@ -132,7 +132,7 @@ public class GameBoardFrame extends JFrame {
 				}else if(i<40) {
 					gridy++;
 				}
-			}
+			//}
 			/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
 			progressBar.setValue(progressBar.getValue() + 10);
 			

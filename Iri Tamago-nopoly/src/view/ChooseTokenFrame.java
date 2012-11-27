@@ -24,10 +24,8 @@ public class ChooseTokenFrame extends JFrame {
 	
 	ChooseTokenFrame() {
 		this.setTitle("Iri Tamagonopoly - Choose a Token");
-		int width = 671;
-		int height = 525;
-		this.setSize(width, height);
-		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
+		this.setSize(671, 525);
+		this.setLocation(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -165,7 +163,9 @@ public class ChooseTokenFrame extends JFrame {
 		this.menuPanel.repaint();
 		
 		GameBoardFrame gameBoard = new GameBoardFrame(jpBar);
-		gameBoard.setLocation(this.getLocation());
+		if(!this.getLocation().equals(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()))) {
+			gameBoard.setLocation(this.getLocation());
+		}
 		gameBoard.setVisible(true);
 		this.dispose();
 	}
