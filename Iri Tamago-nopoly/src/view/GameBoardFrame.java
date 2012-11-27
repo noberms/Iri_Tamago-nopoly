@@ -21,19 +21,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import model.Board;
-
 import view.helper.BackgroundPanel;
 import view.helper.TilePanel;
 import view.helper.ViewHelper;
 
 
-public class GameBoard extends JFrame {
+public class GameBoardFrame extends JFrame {
 	
 	private static final long serialVersionUID = -1406077166444402338L;
 	private TilePanel[] tilePanels = new TilePanel[40];
 	
-	public GameBoard(JProgressBar progressBar) {
+	public GameBoardFrame(JProgressBar progressBar) {
 		this.setTitle("Iri Tamagonopoly - Game Board");
 		int height = 588;
 		int width = 722;
@@ -101,7 +99,24 @@ public class GameBoard extends JFrame {
 				
 				this.tilePanels[i].addMouseListener(new MouseAdapter() {
 					public void mousePressed(MouseEvent e) {
-						JOptionPane.showMessageDialog(null, "You pressed " + Board.getInstance().getTile(((TilePanel)e.getSource()).getIndex()).getName(), "Location", JOptionPane.PLAIN_MESSAGE);
+						//JOptionPane.showMessageDialog(null, "You pressed " + Board.getInstance().getTile(((TilePanel)e.getSource()).getIndex()).getName(), "Location", JOptionPane.PLAIN_MESSAGE);
+						int index = ((TilePanel)e.getSource()).getIndex();
+						Image image = null;
+						try {
+							image = ImageIO.read(new File("images/deeds/" + index + ".png"));
+						} catch (IOException ioe) {
+							image = null;
+						}
+						
+						if(image != null) {
+							image = null;
+							DeedDialog deedDialog = new DeedDialog(index);
+							deedDialog.setVisible(true);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
+						}
+						
 					}
 					
 				});
@@ -200,13 +215,13 @@ public class GameBoard extends JFrame {
 	}
 	
 	private void executeNewGame() {
-		ChooseToken chooseToken = new ChooseToken();
+		ChooseTokenFrame chooseToken = new ChooseTokenFrame();
 		chooseToken.setVisible(true);
 		this.dispose();
 	}
 	
 	private void executeIndex() {
-		Index index = new Index();
+		IndexFrame index = new IndexFrame();
 		index.setVisible(true);
 		this.dispose();
 	}

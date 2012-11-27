@@ -16,13 +16,13 @@ import javax.swing.JProgressBar;
 import view.helper.ViewHelper;
 
 
-public class ChooseToken extends JFrame {
+public class ChooseTokenFrame extends JFrame {
 	
 	private static final long serialVersionUID = -1575414961698739525L;
 	
 	private JPanel menuPanel;
 	
-	ChooseToken() {
+	ChooseTokenFrame() {
 		this.setTitle("Iri Tamagonopoly - Choose a Token");
 		int width = 671;
 		int height = 525;
@@ -105,7 +105,7 @@ public class ChooseToken extends JFrame {
 		GridBagConstraints constraints3 = new GridBagConstraints();
 		constraints3.fill = GridBagConstraints.HORIZONTAL;
 		//constraints1.insets = new Insets(0, 0, 0, 0);
-
+		
 		vh.addComponent(this.getBackButton(), 0, 0, this.menuPanel, constraints3);
 		vh.addComponent(this.getStartButton(), 1, 0, this.menuPanel, constraints3);
 		vh.addComponent(this.menuPanel, 0, 2, new Insets(20, 0, 0, 0), mainPanel, constraints1);
@@ -142,7 +142,7 @@ public class ChooseToken extends JFrame {
 	}
 	
 	private void executeBack() {
-		Index index = new Index();
+		IndexFrame index = new IndexFrame();
 		index.setVisible(true);
 		this.dispose();
 	}
@@ -163,7 +163,7 @@ public class ChooseToken extends JFrame {
 		this.menuPanel.revalidate();
 		this.menuPanel.repaint();
 		
-		GameBoard gameBoard = new GameBoard(jpBar);
+		GameBoardFrame gameBoard = new GameBoardFrame(jpBar);
 		gameBoard.setVisible(true);
 		this.dispose();
 	}

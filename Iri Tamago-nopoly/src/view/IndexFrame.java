@@ -15,16 +15,16 @@ import javax.swing.JPanel;
 import view.helper.ViewHelper;
 
 
-public class Index extends JFrame {
+public class IndexFrame extends JFrame {
 	
 	private static final long serialVersionUID = -7576523088264784541L;
 	//A New Master Branch
 	public static void main(String[] args) {
-		JFrame index = new Index();
+		JFrame index = new IndexFrame();
 		index.setVisible(true);
 	}
 	
-	public Index() {
+	public IndexFrame() {
 		ViewHelper.getInstance().setupLookAndFeel();
 		this.setTitle("Iri Tamagonopoly - Index");
 		int width = 500;
@@ -111,7 +111,7 @@ public class Index extends JFrame {
 	}
 	
 	private void executeNewGame() {
-		ChooseToken chooseToken = new ChooseToken();
+		ChooseTokenFrame chooseToken = new ChooseTokenFrame();
 		chooseToken.setVisible(true);
 		this.dispose();
 	}
