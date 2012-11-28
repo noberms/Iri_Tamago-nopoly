@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Point;
 import java.awt.Toolkit;
 
+
 public class LocationHelper {
 	
 	private static LocationHelper locationHelper;

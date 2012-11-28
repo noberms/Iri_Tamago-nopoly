@@ -13,6 +13,7 @@ import model.Board;
 import view.helper.LocationHelper;
 import view.modifiedComponents.BackgroundPanel;
 
+
 public class DeedDialog extends JDialog {
 	
 	private static final long serialVersionUID = -7286274094471748567L;
