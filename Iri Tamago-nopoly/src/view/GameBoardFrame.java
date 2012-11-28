@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +37,6 @@ public class GameBoardFrame extends JFrame {
 		int height = 588;
 		int width = 722;
 		this.setSize(width, height);
-		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -47,116 +47,117 @@ public class GameBoardFrame extends JFrame {
 	}
 	
 	private void initComponents(JProgressBar progressBar) {
+		ViewHelper vh = ViewHelper.getInstance();
+		
+		//Create Main Gameboard Panel where the board and control panels are added
+		JPanel gameBoardPanel = vh.createPanel(new GridBagLayout());
+		gameBoardPanel.setBackground(Color.WHITE);
+		this.getContentPane().add(gameBoardPanel);
+		
+		//Create Board Panel where the board tiles are added
 		Image image = null;
 		try {
 			image = ImageIO.read(new File("images/Board.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		BackgroundPanel boardPanel = null;
+		BackgroundPanel boardPanel = new BackgroundPanel(image, BackgroundPanel.ACTUAL, 0.0f, 0.0f);
+		boardPanel.setSize(554, 554);
+		boardPanel.setLayout(new GridBagLayout());
+		
+		//Create Control Panel where all control buttons are added
+		JPanel controlPanel = vh.createPanel(Color.WHITE, 161, 554);
+		controlPanel.setLayout(new GridBagLayout());
+		
+		//Add board and control panels to the gameboard panel
+		GridBagConstraints mainConstraint = new GridBagConstraints();
+		vh.addComponent(boardPanel, 0, 0, gameBoardPanel, mainConstraint);
+		vh.addComponent(controlPanel, 1, 0, gameBoardPanel, mainConstraint);
 		/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
 		progressBar.setValue(progressBar.getValue() + 10);
 		
-		//if(image != null) {
-			ViewHelper vh = ViewHelper.getInstance();
-			//Create Background
-			JPanel gameBoardPanel = vh.createPanel(new GridBagLayout());
-			gameBoardPanel.setBackground(Color.WHITE);
-			this.getContentPane().add(gameBoardPanel);
+		this.createBoardPanel(boardPanel);
+		progressBar.setValue(progressBar.getValue() + 10);
+		//System.out.println("Created Tiles for Board Panel");
+		
+		this.createMenuPanel(controlPanel);
+		progressBar.setValue(progressBar.getValue() + 60);
+		//System.out.println("Created Menu Panel");
+	}
+	
+	private void createBoardPanel(JPanel boardPanel) {
+		int tWidth = 45, tHeight = 75;
+		int gridx = 10, gridy = 10;
+		ViewHelper vh = ViewHelper.getInstance();
+		GridBagConstraints gameBoardConstraints = new GridBagConstraints();
 			
-			GridBagConstraints mainConstraint = new GridBagConstraints();
-			boardPanel = new BackgroundPanel(image, BackgroundPanel.ACTUAL, 0.0f, 0.0f);
-			boardPanel.setSize(554, 554);
-			//backgroundPanel.setPaint(Color.WHITE);
-			boardPanel.setLayout(new GridBagLayout());
-			
-			JPanel controlPanel = vh.createPanel(Color.WHITE, 161, 554);
-			controlPanel.setLayout(new GridBagLayout());
-			
-			mainConstraint.gridx = 0;
-			mainConstraint.gridy = 0;
-			gameBoardPanel.add(boardPanel, mainConstraint);
-			mainConstraint.gridx = 1;
-			mainConstraint.gridy = 0;
-			gameBoardPanel.add(controlPanel, mainConstraint);
-			/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
-			progressBar.setValue(progressBar.getValue() + 10);
-			
-			int tWidth = 45, tHeight = 75;
-			int gridx = 10, gridy = 10;
-			GridBagConstraints gameBoardConstraints = new GridBagConstraints();
-			
-			for (int i=0; i<this.tilePanels.length; i++) {
-				if(i%10!=0) {
-					if(i<10 || i<30&&i>20) {
-						this.tilePanels[i] = vh.createTilePanel(i, tWidth, tHeight);
-					}else if(i<20&&i>10 || i<40&&i>30) {
-						this.tilePanels[i] = vh.createTilePanel(i, tHeight, tWidth);
-					}
-				}else {
-					this.tilePanels[i] = vh.createTilePanel(i, tHeight);
+		for (int i=0; i<this.tilePanels.length; i++) {
+			if(i%10!=0) {
+				if(i<10 || i<30&&i>20) {
+					this.tilePanels[i] = vh.createTilePanel(i, tWidth, tHeight);
+				}else if(i<20&&i>10 || i<40&&i>30) {
+					this.tilePanels[i] = vh.createTilePanel(i, tHeight, tWidth);
 				}
-				
-				this.tilePanels[i].addMouseListener(new MouseAdapter() {
-					public void mousePressed(MouseEvent e) {
-						//JOptionPane.showMessageDialog(null, "You pressed " + Board.getInstance().getTile(((TilePanel)e.getSource()).getIndex()).getName(), "Location", JOptionPane.PLAIN_MESSAGE);
-						int index = ((TilePanel)e.getSource()).getIndex();
-						Image image = null;
-						try {
-							image = ImageIO.read(new File("images/deeds/" + index + ".png"));
-						} catch (IOException ioe) {
-							image = null;
-						}
-						
-						if(image != null) {
-							image = null;
-							DeedDialog deedDialog = new DeedDialog(index);
-							deedDialog.setVisible(true);
-						}
-						else {
-							JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
-						}
-						
+			}else {
+				this.tilePanels[i] = vh.createTilePanel(i, tHeight);
+			}
+			
+			this.tilePanels[i].addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					int index = ((TilePanel)e.getSource()).getIndex();
+					Image image = null;
+					try {
+						image = ImageIO.read(new File("images/deeds/" + index + ".png"));
+					} catch (IOException ioe) {
+						image = null;
 					}
 					
-				});
-				
-				vh.addComponent(this.tilePanels[i], gridx, gridy, boardPanel, gameBoardConstraints);
-				
-				if(i<10) {
-					gridx--;
-				}else if(i<20) {
-					gridy--;
-				}else if(i<30) {
-					gridx++;
-				}else if(i<40) {
-					gridy++;
+					if(image != null) {
+						image = null;
+						DeedDialog deedDialog = new DeedDialog(index);
+						deedDialog.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
+					}
 				}
-			//}
-			/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
-			progressBar.setValue(progressBar.getValue() + 10);
+			});
 			
-			gameBoardConstraints.gridheight = 9;
-			gameBoardConstraints.gridwidth = 9;
-			JPanel mid = vh.createPanel(new GridBagLayout(), Color.BLUE);
-			vh.addComponent(mid, 1, 1, boardPanel, gameBoardConstraints);
-			
-			//Create Menu Panel as container of buttons
-			JPanel menuPanel = vh.createPanel(new GridBagLayout());
-			menuPanel.setOpaque(false);
-			vh.addComponent(menuPanel, 0, 0, new Insets(200, 10, 10, 10), controlPanel, new GridBagConstraints());
-			//Create Buttons and add to Menu Panel
-			GridBagConstraints gbc2 = new GridBagConstraints();
-			gbc2.fill = GridBagConstraints.HORIZONTAL;
-			gbc2.insets = new Insets(3, 0, 0, 0);
-			vh.addComponent(this.getScreenResolutionButton(), 0, 0, menuPanel, gbc2);
-			vh.addComponent(this.getNewGame(), 0, 1, menuPanel, gbc2);
-			vh.addComponent(this.getIndex(), 0, 2, menuPanel, gbc2);
-			vh.addComponent(this.getExitButton(), 0, 3, menuPanel, gbc2);
-			
-			/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
-			progressBar.setValue(progressBar.getValue() + 60);
+			vh.addComponent(this.tilePanels[i], gridx, gridy, boardPanel, gameBoardConstraints);
+				
+			if(i<10) {
+				gridx--;
+			}else if(i<20) {
+				gridy--;
+			}else if(i<30) {
+				gridx++;
+			}else if(i<40) {
+				gridy++;
+			}
 		}
+	}
+	
+	private void createMenuPanel(JPanel controlPanel) {
+		ViewHelper vh = ViewHelper.getInstance();
+		/*
+		gameBoardConstraints.gridheight = 9;
+		gameBoardConstraints.gridwidth = 9;
+		JPanel mid = vh.createPanel(new GridBagLayout(), Color.BLUE);
+		vh.addComponent(mid, 1, 1, boardPanel, gameBoardConstraints);
+		*/
+		//Create Menu Panel as container of buttons
+		JPanel menuPanel = vh.createPanel(new GridBagLayout());
+		menuPanel.setOpaque(false);
+		vh.addComponent(menuPanel, 0, 0, new Insets(200, 10, 10, 10), controlPanel, new GridBagConstraints());
+		//Create Buttons and add to Menu Panel
+		GridBagConstraints gbc2 = new GridBagConstraints();
+		gbc2.fill = GridBagConstraints.HORIZONTAL;
+		gbc2.insets = new Insets(3, 0, 0, 0);
+		vh.addComponent(this.getScreenResolutionButton(), 0, 0, menuPanel, gbc2);
+		vh.addComponent(this.getLocationButton(), 0, 1, menuPanel, gbc2);
+		vh.addComponent(this.getNewGame(), 0, 2, menuPanel, gbc2);
+		vh.addComponent(this.getIndex(), 0, 3, menuPanel, gbc2);
+		vh.addComponent(this.getExitButton(), 0, 4, menuPanel, gbc2);
 	}
 	
 	private JButton getScreenResolutionButton() {
@@ -169,6 +170,18 @@ public class GameBoardFrame extends JFrame {
 			}
 		});
 		return screenResolution;
+	}
+	
+	private JButton getLocationButton() {
+		JButton location = new JButton("Location");
+		location.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		location.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				executeLocation();
+			}
+		});
+		return location;
 	}
 
 	private JButton getNewGame() {
@@ -210,8 +223,12 @@ public class GameBoardFrame extends JFrame {
 	private void executeScreenResolution() {
 		int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		int height = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-		
 		JOptionPane.showMessageDialog(null, "Screen resolution is " + width + " x " + height, "Screen Resolution", JOptionPane.PLAIN_MESSAGE);
+	}
+	
+	private void executeLocation() {
+		Point point = this.getLocation();
+		JOptionPane.showMessageDialog(null, "Location is (" + point.x + ", " + point.y + ")", "Location", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	private void executeNewGame() {

@@ -107,13 +107,16 @@ public class ViewHelper {
 		
 		if(parent != null) {
 			if(parent.getLocation().equals(this.getCenterPoint(parent.getWidth(), parent.getHeight()))) {
-				parent.setLocation(this.getCenterPoint(parent.getWidth(), parent.getHeight()));
+				System.out.println("Inherit Center Location");
+				child.setLocation(this.getCenterPoint(child.getWidth(), child.getHeight()));
 			}
 			else {
+				System.out.println("Inherit Modified Location");
 				child.setLocation(parent.getLocation());
 			}
 		}
 		else {
+			System.out.println("Parent is null, set Center Location");
 			child.setLocation(this.getCenterPoint(child.getWidth(), child.getHeight()));
 		}
 	}

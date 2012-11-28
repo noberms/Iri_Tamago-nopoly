@@ -25,7 +25,6 @@ public class ChooseTokenFrame extends JFrame {
 	ChooseTokenFrame() {
 		this.setTitle("Iri Tamagonopoly - Choose a Token");
 		this.setSize(671, 525);
-		this.setLocation(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -142,6 +141,7 @@ public class ChooseTokenFrame extends JFrame {
 	
 	private void executeBack() {
 		IndexFrame index = new IndexFrame();
+		ViewHelper.getInstance().setChildLocation(this, index);
 		index.setVisible(true);
 		this.dispose();
 	}
