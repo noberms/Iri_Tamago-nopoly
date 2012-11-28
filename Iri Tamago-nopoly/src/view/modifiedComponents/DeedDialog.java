@@ -1,4 +1,4 @@
-package view;
+package view.modifiedComponents;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -9,9 +9,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 
 import model.Board;
-
-import view.helper.LocationHelper;
-import view.modifiedComponents.BackgroundPanel;
 
 
 public class DeedDialog extends JDialog {
@@ -25,7 +22,7 @@ public class DeedDialog extends JDialog {
 		int height = 445;
 		this.setSize(width, height);
 		this.setResizable(false);
-		this.setLocation(LocationHelper.getInstance().getScreenCenter(this));
+		//this.setLocation(LocationHelper.getInstance().getScreenCenter(this));
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.initComponents(deedIndex);
 	}

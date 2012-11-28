@@ -35,16 +35,28 @@ public class LocationHelper {
 		return new Point(location.x + (componentWidth / 2), location.y + (componentHeight / 2));
 	}
 	
-	public void automateLocation(Component parent, Component child) {
+	public void automateDeedDialogLocation(Component parent, Component child) {
+		this.automateFrameLocation(parent, child, -80, 15);
+	}
+	
+	public void automateFrameLocation(Component parent, Component child) {
+		this.automateFrameLocation(parent, child, 0);
+	}
+	
+	public void automateFrameLocation(Component parent, Component child, int offset) {
+		this.automateFrameLocation(parent, child, offset, offset);
+	}
+	
+	public void automateFrameLocation(Component parent, Component child, int xOffset, int yOffset) {
 		
 		if(parent != null) {
 			if(parent.getLocation().equals(this.getScreenCenter(parent))) {
-				child.setLocation(this.getScreenCenter(child));
+				child.setLocation(this.getScreenCenter(child).x + xOffset, this.getScreenCenter(child).y + yOffset);
 			}
 			else {
 				Point trueCenter = this.getTrueCenter(parent);
-				int x = trueCenter.x - (child.getWidth() / 2);
-				int y = trueCenter.y - (child.getHeight() / 2);
+				int x = (trueCenter.x + xOffset) - (child.getWidth() / 2);
+				int y = (trueCenter.y + yOffset) - (child.getHeight() / 2);
 				int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 				int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 				

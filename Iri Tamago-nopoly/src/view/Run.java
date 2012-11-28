@@ -9,7 +9,7 @@ public class Run {
 	
 	public static void main(String[] args) {
 		JFrame index = new IndexFrame();
-		LocationHelper.getInstance().automateLocation(null, index);
+		LocationHelper.getInstance().automateFrameLocation(null, index);
 		index.setVisible(true);
 	}
 

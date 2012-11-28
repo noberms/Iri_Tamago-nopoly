@@ -10,8 +10,8 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -25,10 +25,11 @@ import javax.swing.JProgressBar;
 import view.helper.LocationHelper;
 import view.helper.ViewHelper;
 import view.modifiedComponents.BackgroundPanel;
+import view.modifiedComponents.DeedDialog;
 import view.modifiedComponents.TilePanel;
 
 
-public class GameBoardFrame extends JFrame {
+public class GameBoardFrame extends JFrame implements MouseListener {
 	
 	private static final long serialVersionUID = -1406077166444402338L;
 	private TilePanel[] tilePanels = new TilePanel[40];
@@ -103,26 +104,7 @@ public class GameBoardFrame extends JFrame {
 				this.tilePanels[i] = vh.createTilePanel(i, tHeight);
 			}
 			
-			this.tilePanels[i].addMouseListener(new MouseAdapter() {
-				public void mousePressed(MouseEvent e) {
-					int index = ((TilePanel)e.getSource()).getIndex();
-					Image image = null;
-					try {
-						image = ImageIO.read(new File("images/deeds/" + index + ".png"));
-					} catch (IOException ioe) {
-						image = null;
-					}
-					
-					if(image != null) {
-						image = null;
-						DeedDialog deedDialog = new DeedDialog(index);
-						deedDialog.setVisible(true);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
-					}
-				}
-			});
+			this.tilePanels[i].addMouseListener(this);
 			
 			vh.addComponent(this.tilePanels[i], gridx, gridy, boardPanel, gameBoardConstraints);
 				
@@ -137,7 +119,7 @@ public class GameBoardFrame extends JFrame {
 			}
 		}
 	}
-	
+		
 	private void createMenuPanel(JPanel controlPanel) {
 		ViewHelper vh = ViewHelper.getInstance();
 		/*
@@ -240,13 +222,54 @@ public class GameBoardFrame extends JFrame {
 	
 	private void executeIndex() {
 		IndexFrame index = new IndexFrame();
-		LocationHelper.getInstance().automateLocation(this, index);
+		LocationHelper.getInstance().automateFrameLocation(this, index);
 		index.setVisible(true);
 		this.dispose();
 	}
 	
 	private void executeExit() {
 		this.dispose();
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		int index = ((TilePanel)e.getSource()).getIndex();
+		Image image = null;
+		try {
+			image = ImageIO.read(new File("images/deeds/" + index + ".png"));
+		} catch (IOException ioe) {
+			image = null;
+		}
+		
+		if(image != null) {
+			image = null;
+			DeedDialog deedDialog = new DeedDialog(index);
+			LocationHelper.getInstance().automateDeedDialogLocation(this, deedDialog);
+			deedDialog.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
+	}
+	
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		
+	}
+	
+	@Override
+	public void mouseExited(MouseEvent e) {
+		
 	}
 	
 }

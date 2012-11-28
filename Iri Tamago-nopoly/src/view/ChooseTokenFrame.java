@@ -142,7 +142,7 @@ public class ChooseTokenFrame extends JFrame {
 	
 	private void executeBack() {
 		IndexFrame index = new IndexFrame();
-		LocationHelper.getInstance().automateLocation(this, index);
+		LocationHelper.getInstance().automateFrameLocation(this, index);
 		index.setVisible(true);
 		this.dispose();
 	}
@@ -164,7 +164,7 @@ public class ChooseTokenFrame extends JFrame {
 		this.menuPanel.repaint();
 		
 		GameBoardFrame gameBoard = new GameBoardFrame(jpBar);
-		LocationHelper.getInstance().automateLocation(this, gameBoard);
+		LocationHelper.getInstance().automateFrameLocation(this, gameBoard);
 		gameBoard.setVisible(true);
 		this.dispose();
 	}
