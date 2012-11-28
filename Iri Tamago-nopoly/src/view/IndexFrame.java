@@ -18,17 +18,11 @@ import view.helper.ViewHelper;
 public class IndexFrame extends JFrame {
 	
 	private static final long serialVersionUID = -7576523088264784541L;
-	//A New Master Branch
-	public static void main(String[] args) {
-		JFrame index = new IndexFrame();
-		index.setVisible(true);
-	}
-	
+		
 	public IndexFrame() {
 		ViewHelper.getInstance().setupLookAndFeel();
 		this.setTitle("Iri Tamagonopoly - Index");
 		this.setSize(500, 390);
-		this.setLocation(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -110,9 +104,7 @@ public class IndexFrame extends JFrame {
 	
 	private void executeNewGame() {
 		ChooseTokenFrame chooseToken = new ChooseTokenFrame();
-		if(!this.getLocation().equals(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()))) {
-			chooseToken.setLocation(this.getLocation());
-		}
+		ViewHelper.getInstance().setChildLocation(this, chooseToken);
 		chooseToken.setVisible(true);
 		this.dispose();
 	}

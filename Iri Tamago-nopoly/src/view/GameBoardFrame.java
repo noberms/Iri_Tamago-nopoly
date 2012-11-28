@@ -222,6 +222,7 @@ public class GameBoardFrame extends JFrame {
 	
 	private void executeIndex() {
 		IndexFrame index = new IndexFrame();
+		ViewHelper.getInstance().setChildLocation(this, index);
 		index.setVisible(true);
 		this.dispose();
 	}

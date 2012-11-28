@@ -163,9 +163,7 @@ public class ChooseTokenFrame extends JFrame {
 		this.menuPanel.repaint();
 		
 		GameBoardFrame gameBoard = new GameBoardFrame(jpBar);
-		if(!this.getLocation().equals(ViewHelper.getInstance().getCenterPoint(this.getWidth(), this.getHeight()))) {
-			gameBoard.setLocation(this.getLocation());
-		}
+		ViewHelper.getInstance().setChildLocation(this, gameBoard);
 		gameBoard.setVisible(true);
 		this.dispose();
 	}

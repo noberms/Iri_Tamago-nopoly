@@ -1,6 +1,7 @@
 package view.helper;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -100,6 +101,21 @@ public class ViewHelper {
 		int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 		return new Point((screenWidth - componentWidth) / 2, (screenHeight - componentHeight) / 2);
+	}
+	
+	public void setChildLocation(Component parent, Component child) {
+		
+		if(parent != null) {
+			if(parent.getLocation().equals(this.getCenterPoint(parent.getWidth(), parent.getHeight()))) {
+				parent.setLocation(this.getCenterPoint(parent.getWidth(), parent.getHeight()));
+			}
+			else {
+				child.setLocation(parent.getLocation());
+			}
+		}
+		else {
+			child.setLocation(this.getCenterPoint(child.getWidth(), child.getHeight()));
+		}
 	}
 	
 }
