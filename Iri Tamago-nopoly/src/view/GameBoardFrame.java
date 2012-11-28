@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -249,7 +250,19 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 			deedDialog.setVisible(true);
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane optionPane = new JOptionPane("Its me",
+										JOptionPane.PLAIN_MESSAGE,
+										JOptionPane.DEFAULT_OPTION,
+										null, 
+										null, 
+										"Pleas ENTER your NAME here");
+			optionPane.setWantsInput(true);             
+	        JDialog dialog = optionPane.createDialog(null, "TEST");
+	        LocationHelper.getInstance().automateDeedDialogLocation(this, dialog);
+	        //dialog.setLocation(10, 20);
+	        dialog.setVisible(true);
+	        System.out.println(optionPane.getInputValue());
 		}
 	}
 	
