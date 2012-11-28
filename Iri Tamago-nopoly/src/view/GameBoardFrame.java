@@ -43,7 +43,6 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		/* >>>>>>>>>> UPDATE PROGRESS BAR <<<<<<<<<< */
 		progressBar.setValue(progressBar.getValue() + 10);
 		
 		this.initComponents(progressBar);
@@ -81,11 +80,9 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 		
 		this.createBoardPanel(boardPanel);
 		progressBar.setValue(progressBar.getValue() + 10);
-		//System.out.println("Created Tiles for Board Panel");
 		
 		this.createMenuPanel(controlPanel);
 		progressBar.setValue(progressBar.getValue() + 60);
-		//System.out.println("Created Menu Panel");
 	}
 	
 	private void createBoardPanel(JPanel boardPanel) {
@@ -251,18 +248,10 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 		}
 		else {
 			//JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
-			JOptionPane optionPane = new JOptionPane("Its me",
-										JOptionPane.PLAIN_MESSAGE,
-										JOptionPane.DEFAULT_OPTION,
-										null, 
-										null, 
-										"Pleas ENTER your NAME here");
-			optionPane.setWantsInput(true);             
-	        JDialog dialog = optionPane.createDialog(null, "TEST");
+			JOptionPane optionPane = new JOptionPane("Not yet available", JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);           
+	        JDialog dialog = optionPane.createDialog(this, "Tile Info");
 	        LocationHelper.getInstance().automateDeedDialogLocation(this, dialog);
-	        //dialog.setLocation(10, 20);
 	        dialog.setVisible(true);
-	        System.out.println(optionPane.getInputValue());
 		}
 	}
 	
