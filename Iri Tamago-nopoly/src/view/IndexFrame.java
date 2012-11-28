@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import view.helper.LocationHelper;
 import view.helper.ViewHelper;
 
 
@@ -104,7 +105,7 @@ public class IndexFrame extends JFrame {
 	
 	private void executeNewGame() {
 		ChooseTokenFrame chooseToken = new ChooseTokenFrame();
-		ViewHelper.getInstance().setChildLocation(this, chooseToken);
+		LocationHelper.getInstance().automateLocation(this, chooseToken);
 		chooseToken.setVisible(true);
 		this.dispose();
 	}

@@ -1,4 +1,4 @@
-package view.helper;
+package view.modifiedComponents;
 
 import java.awt.Paint;
 import java.awt.Image;

@@ -10,8 +10,8 @@ import javax.swing.JDialog;
 
 import model.Board;
 
-import view.helper.BackgroundPanel;
-import view.helper.ViewHelper;
+import view.helper.LocationHelper;
+import view.modifiedComponents.BackgroundPanel;
 
 public class DeedDialog extends JDialog {
 	
@@ -24,7 +24,7 @@ public class DeedDialog extends JDialog {
 		int height = 445;
 		this.setSize(width, height);
 		this.setResizable(false);
-		this.setLocation(ViewHelper.getInstance().getCenterPoint(width, height));
+		this.setLocation(LocationHelper.getInstance().getCenterLocation(width, height));
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.initComponents(deedIndex);
 	}

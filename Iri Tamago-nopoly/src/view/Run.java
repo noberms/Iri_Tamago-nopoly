@@ -2,13 +2,13 @@ package view;
 
 import javax.swing.JFrame;
 
-import view.helper.ViewHelper;
+import view.helper.LocationHelper;
 
 public class Run {
 	
 	public static void main(String[] args) {
 		JFrame index = new IndexFrame();
-		ViewHelper.getInstance().setChildLocation(null, index);
+		LocationHelper.getInstance().automateLocation(null, index);
 		index.setVisible(true);
 	}
 

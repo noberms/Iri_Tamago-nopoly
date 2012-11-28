@@ -1,17 +1,16 @@
 package view.helper;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Toolkit;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+
+import view.modifiedComponents.TilePanel;
 
 public class ViewHelper {
 	
@@ -95,30 +94,6 @@ public class ViewHelper {
 	public void addComponent(JComponent component, int gridx, int gridy, Insets insets, JComponent base, GridBagConstraints constraints) {
 		constraints.insets = insets;
 		this.addComponent(component, gridx, gridy, base, constraints);
-	}
-	
-	public Point getCenterPoint(int componentWidth, int componentHeight) {
-		int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-		int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-		return new Point((screenWidth - componentWidth) / 2, (screenHeight - componentHeight) / 2);
-	}
-	
-	public void setChildLocation(Component parent, Component child) {
-		
-		if(parent != null) {
-			if(parent.getLocation().equals(this.getCenterPoint(parent.getWidth(), parent.getHeight()))) {
-				System.out.println("Inherit Center Location");
-				child.setLocation(this.getCenterPoint(child.getWidth(), child.getHeight()));
-			}
-			else {
-				System.out.println("Inherit Modified Location");
-				child.setLocation(parent.getLocation());
-			}
-		}
-		else {
-			System.out.println("Parent is null, set Center Location");
-			child.setLocation(this.getCenterPoint(child.getWidth(), child.getHeight()));
-		}
 	}
 	
 }

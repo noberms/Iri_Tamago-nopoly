@@ -22,9 +22,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import view.helper.BackgroundPanel;
-import view.helper.TilePanel;
+import view.helper.LocationHelper;
 import view.helper.ViewHelper;
+import view.modifiedComponents.BackgroundPanel;
+import view.modifiedComponents.TilePanel;
 
 
 public class GameBoardFrame extends JFrame {
@@ -239,7 +240,7 @@ public class GameBoardFrame extends JFrame {
 	
 	private void executeIndex() {
 		IndexFrame index = new IndexFrame();
-		ViewHelper.getInstance().setChildLocation(this, index);
+		LocationHelper.getInstance().automateLocation(this, index);
 		index.setVisible(true);
 		this.dispose();
 	}

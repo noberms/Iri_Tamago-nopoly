@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import view.helper.LocationHelper;
 import view.helper.ViewHelper;
 
 
@@ -141,7 +142,7 @@ public class ChooseTokenFrame extends JFrame {
 	
 	private void executeBack() {
 		IndexFrame index = new IndexFrame();
-		ViewHelper.getInstance().setChildLocation(this, index);
+		LocationHelper.getInstance().automateLocation(this, index);
 		index.setVisible(true);
 		this.dispose();
 	}
@@ -163,7 +164,7 @@ public class ChooseTokenFrame extends JFrame {
 		this.menuPanel.repaint();
 		
 		GameBoardFrame gameBoard = new GameBoardFrame(jpBar);
-		ViewHelper.getInstance().setChildLocation(this, gameBoard);
+		LocationHelper.getInstance().automateLocation(this, gameBoard);
 		gameBoard.setVisible(true);
 		this.dispose();
 	}
