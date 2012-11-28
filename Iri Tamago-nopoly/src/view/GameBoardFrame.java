@@ -216,6 +216,7 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 	
 	private void executeNewGame() {
 		ChooseTokenFrame chooseToken = new ChooseTokenFrame();
+		LocationHelper.getInstance().automateFrameLocation(this, chooseToken);
 		chooseToken.setVisible(true);
 		this.dispose();
 	}
