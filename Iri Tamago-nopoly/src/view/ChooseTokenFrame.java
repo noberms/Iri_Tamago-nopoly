@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import view.helper.LocationHelper;
-import view.helper.ViewHelper;
+import view.helper.ComponentHelper;
 
 
 public class ChooseTokenFrame extends JFrame {
@@ -33,12 +33,12 @@ public class ChooseTokenFrame extends JFrame {
 	}
 	
 	private void initComponents() {
-		ViewHelper vh = ViewHelper.getInstance();
-		JPanel mainPanel = ViewHelper.getInstance().createPanel();
+		ComponentHelper vh = ComponentHelper.getInstance();
+		JPanel mainPanel = ComponentHelper.getInstance().createPanel();
 		mainPanel.setLayout(new GridBagLayout());
 		JPanel tokenPanels[] = new JPanel[2];
 		for(int i=0; i<tokenPanels.length; i++) {
-			tokenPanels[i] = ViewHelper.getInstance().createPanel(null, 550, 140);
+			tokenPanels[i] = ComponentHelper.getInstance().createPanel(null, 550, 140);
 		}
 		
 		GridBagConstraints constraints1 = new GridBagConstraints();
@@ -46,10 +46,10 @@ public class ChooseTokenFrame extends JFrame {
 		JPanel tokens[] = new JPanel[8];
 		for(int i=0; i < tokens.length; i++) {
 			if(i%2 == 0) {
-				tokens[i] = ViewHelper.getInstance().createPanel(Color.BLACK, 130);
+				tokens[i] = ComponentHelper.getInstance().createPanel(Color.BLACK, 130);
 			}
 			else {
-				tokens[i] = ViewHelper.getInstance().createPanel(Color.BLUE, 130);
+				tokens[i] = ComponentHelper.getInstance().createPanel(Color.BLUE, 130);
 			}
 		}
 		GridBagConstraints constraints2 = new GridBagConstraints();
@@ -99,7 +99,7 @@ public class ChooseTokenFrame extends JFrame {
 		constraints1.insets = new Insets(130, 0, 0, 0);
 		mainPanel.add(tokenPanels[1], constraints1);
 		
-		this.menuPanel = ViewHelper.getInstance().createPanel(null, 200, 35);
+		this.menuPanel = ComponentHelper.getInstance().createPanel(null, 200, 35);
 		GridBagConstraints constraints3 = new GridBagConstraints();
 		constraints3.fill = GridBagConstraints.HORIZONTAL;
 		//constraints1.insets = new Insets(0, 0, 0, 0);
@@ -155,7 +155,7 @@ public class ChooseTokenFrame extends JFrame {
 		this.menuPanel.removeAll();
 		this.menuPanel.revalidate();
 		this.menuPanel.repaint();
-		ViewHelper vh = ViewHelper.getInstance();
+		ComponentHelper vh = ComponentHelper.getInstance();
 		JProgressBar jpBar = new JProgressBar(0, 100);
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.HORIZONTAL;

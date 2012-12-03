@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.helper.LocationHelper;
-import view.helper.ViewHelper;
+import view.helper.ComponentHelper;
 
 
 public class IndexFrame extends JFrame {
@@ -21,7 +21,7 @@ public class IndexFrame extends JFrame {
 	private static final long serialVersionUID = -7576523088264784541L;
 		
 	public IndexFrame() {
-		ViewHelper.getInstance().setupLookAndFeel();
+		ComponentHelper.getInstance().setupLookAndFeel();
 		this.setTitle("Iri Tamagonopoly - Index");
 		this.setSize(500, 390);
 		this.setResizable(false);
@@ -32,7 +32,7 @@ public class IndexFrame extends JFrame {
 	
 	private void initComponents() {
 
-		ViewHelper vh = ViewHelper.getInstance();
+		ComponentHelper vh = ComponentHelper.getInstance();
 		JPanel menu = vh.createPanel(new GridBagLayout());
 		GridBagConstraints gbc2 = new GridBagConstraints();
 		gbc2.fill = GridBagConstraints.HORIZONTAL;

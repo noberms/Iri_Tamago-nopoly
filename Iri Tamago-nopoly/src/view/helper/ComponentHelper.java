@@ -1,28 +1,37 @@
 package view.helper;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import model.Board;
+
+import view.modifiedComponents.BackgroundPanel;
 import view.modifiedComponents.TilePanel;
 
-public class ViewHelper {
+public class ComponentHelper {
 	
-	private static ViewHelper viewHelper;
+	private static ComponentHelper viewHelper;
 	
-	private ViewHelper() {
+	private ComponentHelper() {
 		
 	}
 	
-	public static ViewHelper getInstance() {
+	public static ComponentHelper getInstance() {
 		if(viewHelper == null) {
-			viewHelper = new ViewHelper();
+			viewHelper = new ComponentHelper();
 		}
 		return viewHelper;
 	}
@@ -94,6 +103,52 @@ public class ViewHelper {
 	public void addComponent(JComponent component, int gridx, int gridy, Insets insets, JComponent base, GridBagConstraints constraints) {
 		constraints.insets = insets;
 		this.addComponent(component, gridx, gridy, base, constraints);
+	}
+	
+	public void createDeedDialog(Component parent, int index) {
+		
+		final class TileDialog extends JDialog {
+			
+			private static final long serialVersionUID = -7368844749912731622L;
+			
+			public TileDialog(int index) {
+				String name = Board.getInstance().getTile(index).getName();
+				this.setTitle(name);
+				this.setModal(true);
+				this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				this.initComponents(index);
+			}
+			
+			private void initComponents(int index) {
+				BufferedImage image = null;
+				int width=0, height=0;
+				try {
+					image = ImageIO.read(new File("images/deeds/" + index + ".png"));
+					width = image.getWidth();
+					height = image.getHeight();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				if(width>0 && height>0) {
+					this.setSize(width+6, height+50);
+					this.setResizable(false);
+				}
+				
+				BackgroundPanel backgroundPanel = null;
+				if(image != null) {
+					backgroundPanel = new BackgroundPanel(image, BackgroundPanel.ACTUAL, 0.0f, 0.0f);
+					backgroundPanel.setPaint(Color.WHITE);
+					this.add(backgroundPanel);
+				}
+			}
+			
+		}
+		
+		TileDialog tileDialog = new TileDialog(index);
+		LocationHelper.getInstance().automateDeedDialogLocation(parent, tileDialog);
+		tileDialog.setVisible(true);
+		
 	}
 	
 }

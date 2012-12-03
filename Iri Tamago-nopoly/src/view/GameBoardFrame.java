@@ -24,9 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import view.helper.LocationHelper;
-import view.helper.ViewHelper;
+import view.helper.ComponentHelper;
 import view.modifiedComponents.BackgroundPanel;
-import view.modifiedComponents.DeedDialog;
 import view.modifiedComponents.TilePanel;
 
 
@@ -49,7 +48,7 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 	}
 	
 	private void initComponents(JProgressBar progressBar) {
-		ViewHelper vh = ViewHelper.getInstance();
+		ComponentHelper vh = ComponentHelper.getInstance();
 		
 		//Create Main Gameboard Panel where the board and control panels are added
 		JPanel gameBoardPanel = vh.createPanel(new GridBagLayout());
@@ -88,7 +87,7 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 	private void createBoardPanel(JPanel boardPanel) {
 		int tWidth = 45, tHeight = 75;
 		int gridx = 10, gridy = 10;
-		ViewHelper vh = ViewHelper.getInstance();
+		ComponentHelper vh = ComponentHelper.getInstance();
 		GridBagConstraints gameBoardConstraints = new GridBagConstraints();
 			
 		for (int i=0; i<this.tilePanels.length; i++) {
@@ -119,7 +118,7 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 	}
 		
 	private void createMenuPanel(JPanel controlPanel) {
-		ViewHelper vh = ViewHelper.getInstance();
+		ComponentHelper vh = ComponentHelper.getInstance();
 		/*
 		gameBoardConstraints.gridheight = 9;
 		gameBoardConstraints.gridwidth = 9;
@@ -242,9 +241,12 @@ public class GameBoardFrame extends JFrame implements MouseListener {
 		
 		if(image != null) {
 			image = null;
+			ComponentHelper.getInstance().createDeedDialog(this, index);
+			/*
 			DeedDialog deedDialog = new DeedDialog(index);
 			LocationHelper.getInstance().automateDeedDialogLocation(this, deedDialog);
 			deedDialog.setVisible(true);
+			*/
 		}
 		else {
 			//JOptionPane.showMessageDialog(null, "Not yet available", "Tile Info", JOptionPane.PLAIN_MESSAGE);
